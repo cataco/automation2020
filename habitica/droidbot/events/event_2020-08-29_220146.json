@@ -1,0 +1,10 @@
+{
+  "tag": "2020-08-29_220146",
+  "event": {
+    "event_type": "key",
+    "name": "HOME"
+  },
+  "start_state": "c474a827c5050e6add76cd4608e00064",
+  "stop_state": "914d8086bcec2b89919be2ef65b2ab0b",
+  "event_str": "KeyEvent(state=c474a827c5050e6add76cd4608e00064, name=HOME)"
+}

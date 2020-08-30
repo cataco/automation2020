@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-29_220942",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "com.habitrpg.android.habitica",
+      "visible": false,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          1259,
+          799
+        ],
+        [
+          1080,
+          855
+        ]
+      ],
+      "resource_id": "com.habitrpg.android.habitica:id/checkedTextView",
+      "checked": false,
+      "text": "Stretching >> Daily workout routine",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 182,
+      "temp_id": 183,
+      "size": "-179*56",
+      "signature": "[class]android.widget.TextView[resource_id]com.habitrpg.android.habitica:id/checkedTextView[text]Stretching >> Daily workout routine[enabled,,]",
+      "view_str": "279f2c2ff14f525d064ad4d856a54d7b",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]com.habitrpg.android.habitica:id/checkedTextView"
+    }
+  },
+  "start_state": "468cb16f203ba06bb916f9500df4349d",
+  "stop_state": "468cb16f203ba06bb916f9500df4349d",
+  "event_str": "TouchEvent(state=468cb16f203ba06bb916f9500df4349d, view=279f2c2ff14f525d064ad4d856a54d7b)"
+}

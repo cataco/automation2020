@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-29_222552",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "com.habitrpg.android.habitica",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": "Negative",
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          942,
+          1432
+        ],
+        [
+          1080,
+          1689
+        ]
+      ],
+      "resource_id": "com.habitrpg.android.habitica:id/btnMinus",
+      "checked": false,
+      "text": null,
+      "class": "android.widget.Button",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 157,
+      "temp_id": 158,
+      "size": "138*257",
+      "signature": "[class]android.widget.Button[resource_id]com.habitrpg.android.habitica:id/btnMinus[text]None[enabled,,]",
+      "view_str": "e972a980a7947779e65ce069a1691a8c",
+      "content_free_signature": "[class]android.widget.Button[resource_id]com.habitrpg.android.habitica:id/btnMinus"
+    }
+  },
+  "start_state": "a3aa9b31575aae98622578a2215e5b2c",
+  "stop_state": "ae1a402c571c767d68fe1c8e8b582f38",
+  "event_str": "TouchEvent(state=a3aa9b31575aae98622578a2215e5b2c, view=e972a980a7947779e65ce069a1691a8c)"
+}

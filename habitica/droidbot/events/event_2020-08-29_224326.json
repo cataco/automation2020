@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-29_224326",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "com.habitrpg.android.habitica",
+      "visible": false,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          1259,
+          674
+        ],
+        [
+          1080,
+          716
+        ]
+      ],
+      "resource_id": "com.habitrpg.android.habitica:id/notesTextView",
+      "checked": false,
+      "text": "Tap to choose your schedule!",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 171,
+      "temp_id": 173,
+      "size": "-179*42",
+      "signature": "[class]android.widget.TextView[resource_id]com.habitrpg.android.habitica:id/notesTextView[text]Tap to choose your schedule![enabled,,]",
+      "view_str": "da5e0c84c5c798045ebc6ab7c25261b7",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]com.habitrpg.android.habitica:id/notesTextView"
+    }
+  },
+  "start_state": "2526e95bb08fad1644fda4bf932f6e34",
+  "stop_state": "2526e95bb08fad1644fda4bf932f6e34",
+  "event_str": "TouchEvent(state=2526e95bb08fad1644fda4bf932f6e34, view=da5e0c84c5c798045ebc6ab7c25261b7)"
+}

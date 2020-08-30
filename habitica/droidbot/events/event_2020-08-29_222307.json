@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-29_222307",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "com.habitrpg.android.habitica",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          268,
+          1323
+        ],
+        [
+          811,
+          1420
+        ]
+      ],
+      "resource_id": null,
+      "checked": false,
+      "text": "Refill Health & Try Again",
+      "class": "android.widget.Button",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 32,
+      "temp_id": 33,
+      "size": "543*97",
+      "signature": "[class]android.widget.Button[resource_id]None[text]Refill Health & Try Again[enabled,,]",
+      "view_str": "e783eeb27534ee520232517de9b69cfb",
+      "content_free_signature": "[class]android.widget.Button[resource_id]None"
+    }
+  },
+  "start_state": "f26a3f228f1682969ce7a9ee103e6663",
+  "stop_state": "dcb1f3518a0802456ce8ec18fd0c865e",
+  "event_str": "TouchEvent(state=f26a3f228f1682969ce7a9ee103e6663, view=e783eeb27534ee520232517de9b69cfb)"
+}

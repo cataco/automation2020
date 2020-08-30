@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-29_222535",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "com.habitrpg.android.habitica",
+      "visible": false,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          1259,
+          1036
+        ],
+        [
+          1080,
+          1078
+        ]
+      ],
+      "resource_id": "com.habitrpg.android.habitica:id/notesTextView",
+      "checked": false,
+      "text": "Tap to choose your homework schedule!",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 193,
+      "temp_id": 195,
+      "size": "-179*42",
+      "signature": "[class]android.widget.TextView[resource_id]com.habitrpg.android.habitica:id/notesTextView[text]Tap to choose your homework schedule![enabled,,]",
+      "view_str": "0c27bcf640458a40eb216726571458ad",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]com.habitrpg.android.habitica:id/notesTextView"
+    }
+  },
+  "start_state": "a3aa9b31575aae98622578a2215e5b2c",
+  "stop_state": "a3aa9b31575aae98622578a2215e5b2c",
+  "event_str": "TouchEvent(state=a3aa9b31575aae98622578a2215e5b2c, view=0c27bcf640458a40eb216726571458ad)"
+}

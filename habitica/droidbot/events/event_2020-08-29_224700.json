@@ -1,0 +1,49 @@
+{
+  "tag": "2020-08-29_224700",
+  "event": {
+    "event_type": "long_touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "com.habitrpg.android.habitica",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": true,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          41,
+          408
+        ],
+        [
+          1039,
+          670
+        ]
+      ],
+      "resource_id": "com.habitrpg.android.habitica:id/notes_edit_text",
+      "checked": false,
+      "text": "Either a Habit, a Daily, or a To Do",
+      "class": "android.widget.EditText",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 19,
+      "temp_id": 20,
+      "size": "998*262",
+      "signature": "[class]android.widget.EditText[resource_id]com.habitrpg.android.habitica:id/notes_edit_text[text]Either a Habit, a Daily, or a To Do[enabled,,]",
+      "view_str": "fd2d734a45e91a864133c873d9331a71",
+      "content_free_signature": "[class]android.widget.EditText[resource_id]com.habitrpg.android.habitica:id/notes_edit_text"
+    },
+    "duration": 2000
+  },
+  "start_state": "f21a18a6c1122b941a24f78873fa4fa8",
+  "stop_state": "f21a18a6c1122b941a24f78873fa4fa8",
+  "event_str": "LongTouchEvent(state=f21a18a6c1122b941a24f78873fa4fa8, view=fd2d734a45e91a864133c873d9331a71, duration=2000)"
+}
