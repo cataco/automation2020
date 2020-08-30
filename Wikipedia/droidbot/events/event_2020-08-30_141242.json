@@ -1,0 +1,49 @@
+{
+  "tag": "2020-08-30_141242",
+  "event": {
+    "event_type": "set_text",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": true,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          48,
+          306
+        ],
+        [
+          1032,
+          491
+        ]
+      ],
+      "resource_id": null,
+      "checked": false,
+      "text": "Username",
+      "class": "android.widget.EditText",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 16,
+      "temp_id": 17,
+      "size": "984*185",
+      "signature": "[class]android.widget.EditText[resource_id]None[text]Username[enabled,,]",
+      "view_str": "fc52932236a10f8c69f1c60aec79d8d8",
+      "content_free_signature": "[class]android.widget.EditText[resource_id]None"
+    },
+    "text": "HelloWorld"
+  },
+  "start_state": "5615f127184a99a7ae2ad5510dc5509e",
+  "stop_state": "5c8e240459bc4a967902240c7313d2ed",
+  "event_str": "SetTextEvent(state=5615f127184a99a7ae2ad5510dc5509e, view=fc52932236a10f8c69f1c60aec79d8d8, text=HelloWorld)"
+}

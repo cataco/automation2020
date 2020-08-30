@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_140435",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": "Developer settings",
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          936,
+          102
+        ],
+        [
+          1080,
+          246
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/developer_settings",
+      "checked": false,
+      "text": null,
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 8,
+      "temp_id": 9,
+      "size": "144*144",
+      "signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/developer_settings[text]None[enabled,,]",
+      "view_str": "a511df33458cc7847e0fcdd13228361b",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/developer_settings"
+    }
+  },
+  "start_state": "728d1d25f58f13341a2a13d5783df841",
+  "stop_state": "0364e949dcec794c9405a96b39b1f769",
+  "event_str": "TouchEvent(state=728d1d25f58f13341a2a13d5783df841, view=a511df33458cc7847e0fcdd13228361b)"
+}

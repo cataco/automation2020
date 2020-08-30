@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_140802",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          151,
+          1226
+        ],
+        [
+          610,
+          1313
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/forgot_password_link",
+      "checked": false,
+      "text": "Forgot your password?",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 35,
+      "temp_id": 36,
+      "size": "459*87",
+      "signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/forgot_password_link[text]Forgot your password?[enabled,,]",
+      "view_str": "20efab0615b92a0d439d637345e73b38",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/forgot_password_link"
+    }
+  },
+  "start_state": "ceee85c950f5a86b22e1daddbef07480",
+  "stop_state": "b3926fb803dc893b40f6527697941941",
+  "event_str": "TouchEvent(state=ceee85c950f5a86b22e1daddbef07480, view=20efab0615b92a0d439d637345e73b38)"
+}

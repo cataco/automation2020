@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_141359",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": false,
+      "is_password": false,
+      "focusable": false,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          96,
+          678
+        ],
+        [
+          984,
+          854
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/messageTitleView",
+      "checked": false,
+      "text": "Did you know that everyone can edit Wikipedia?",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 20,
+      "temp_id": 22,
+      "size": "888*176",
+      "signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/messageTitleView[text]Did you know that everyone can edit Wikipedia?[enabled,,]",
+      "view_str": "fc5a093534be174198f530ccb1513e42",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/messageTitleView"
+    }
+  },
+  "start_state": "e175e650bc90771abaa782e31e6cd7a5",
+  "stop_state": "5615f127184a99a7ae2ad5510dc5509e",
+  "event_str": "TouchEvent(state=e175e650bc90771abaa782e31e6cd7a5, view=fc5a093534be174198f530ccb1513e42)"
+}

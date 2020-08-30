@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_133027",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "android",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": false,
+      "is_password": false,
+      "focusable": false,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          96,
+          1118
+        ],
+        [
+          664,
+          1271
+        ]
+      ],
+      "resource_id": "android:id/text1",
+      "checked": false,
+      "text": "elkinmantilla1990@gmail.com",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 2,
+      "temp_id": 3,
+      "size": "568*153",
+      "signature": "[class]android.widget.TextView[resource_id]android:id/text1[text]elkinmantilla1990@gmail.com[enabled,,]",
+      "view_str": "4fd3ab504b703754663de9c3603a2cba",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]android:id/text1"
+    }
+  },
+  "start_state": "64ae9bc6623f9dd3af3736d3c5487231",
+  "stop_state": "3f8662099ed185ee8057918e09b5d321",
+  "event_str": "TouchEvent(state=64ae9bc6623f9dd3af3736d3c5487231, view=4fd3ab504b703754663de9c3603a2cba)"
+}

@@ -1,0 +1,10 @@
+{
+  "tag": "2020-08-30_141350",
+  "event": {
+    "event_type": "key",
+    "name": "MENU"
+  },
+  "start_state": "5fa530bc603646a063a8de3cf53b246c",
+  "stop_state": "5fa530bc603646a063a8de3cf53b246c",
+  "event_str": "KeyEvent(state=5fa530bc603646a063a8de3cf53b246c, name=MENU)"
+}

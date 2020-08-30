@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_141331",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": false,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": false,
+      "is_password": false,
+      "focusable": false,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          1032,
+          306
+        ],
+        [
+          1032,
+          491
+        ]
+      ],
+      "resource_id": null,
+      "checked": false,
+      "text": null,
+      "class": "android.widget.FrameLayout",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 18,
+      "temp_id": 19,
+      "size": "0*185",
+      "signature": "[class]android.widget.FrameLayout[resource_id]None[text]None[enabled,,]",
+      "view_str": "317991de13bbac9c1ad1783b5d3fcfd7",
+      "content_free_signature": "[class]android.widget.FrameLayout[resource_id]None"
+    }
+  },
+  "start_state": "5fa530bc603646a063a8de3cf53b246c",
+  "stop_state": "5fa530bc603646a063a8de3cf53b246c",
+  "event_str": "TouchEvent(state=5fa530bc603646a063a8de3cf53b246c, view=317991de13bbac9c1ad1783b5d3fcfd7)"
+}

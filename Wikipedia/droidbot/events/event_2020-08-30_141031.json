@@ -1,0 +1,51 @@
+{
+  "tag": "2020-08-30_141031",
+  "event": {
+    "event_type": "scroll",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 1,
+      "editable": false,
+      "clickable": false,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [
+        15
+      ],
+      "focused": false,
+      "bounds": [
+        [
+          0,
+          258
+        ],
+        [
+          1080,
+          1982
+        ]
+      ],
+      "resource_id": null,
+      "checked": false,
+      "text": null,
+      "class": "androidx.recyclerview.widget.RecyclerView",
+      "scrollable": true,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 13,
+      "temp_id": 14,
+      "size": "1080*1724",
+      "signature": "[class]androidx.recyclerview.widget.RecyclerView[resource_id]None[text]None[enabled,,]",
+      "view_str": "cc468e40bf7f09908af9102966982d74",
+      "content_free_signature": "[class]androidx.recyclerview.widget.RecyclerView[resource_id]None"
+    },
+    "direction": "DOWN"
+  },
+  "start_state": "bfe8d0659dc7e0fdccb485bc2ac8921d",
+  "stop_state": "bfe8d0659dc7e0fdccb485bc2ac8921d",
+  "event_str": "ScrollEvent(state=bfe8d0659dc7e0fdccb485bc2ac8921d, view=cc468e40bf7f09908af9102966982d74, direction=DOWN)"
+}

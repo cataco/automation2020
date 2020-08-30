@@ -1,0 +1,52 @@
+{
+  "tag": "2020-08-30_141043",
+  "event": {
+    "event_type": "long_touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 2,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": "More",
+      "children": [
+        42,
+        43
+      ],
+      "focused": false,
+      "bounds": [
+        [
+          864,
+          1982
+        ],
+        [
+          1080,
+          2150
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/nav_more_container",
+      "checked": false,
+      "text": null,
+      "class": "android.widget.LinearLayout",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 21,
+      "temp_id": 41,
+      "size": "216*168",
+      "signature": "[class]android.widget.LinearLayout[resource_id]org.wikipedia.dev:id/nav_more_container[text]None[enabled,,]",
+      "view_str": "4b50feedcba3ea846dfd8fa9515dd8e5",
+      "content_free_signature": "[class]android.widget.LinearLayout[resource_id]org.wikipedia.dev:id/nav_more_container"
+    },
+    "duration": 2000
+  },
+  "start_state": "bfe8d0659dc7e0fdccb485bc2ac8921d",
+  "stop_state": "bfe8d0659dc7e0fdccb485bc2ac8921d",
+  "event_str": "LongTouchEvent(state=bfe8d0659dc7e0fdccb485bc2ac8921d, view=4b50feedcba3ea846dfd8fa9515dd8e5, duration=2000)"
+}

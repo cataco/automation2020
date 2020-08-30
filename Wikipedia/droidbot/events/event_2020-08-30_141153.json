@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_141153",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          48,
+          1394
+        ],
+        [
+          1032,
+          1719
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/activity_about_libraries",
+      "checked": false,
+      "text": "App Center SDK (license), ButterKnife (license), ChromeLikeTabSwitcher (license), Commons Lang (license), Fresco (license), jsoup (license), Mapbox Android SDK (license), OkHttp (license), Otto (license), Retrofit (license), TapTargetView (license) ",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 12,
+      "temp_id": 21,
+      "size": "984*325",
+      "signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/activity_about_libraries[text]None[enabled,,]",
+      "view_str": "6356919714b0fe53d7eb34459fa9fb33",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/activity_about_libraries"
+    }
+  },
+  "start_state": "82ad39fa339a35fd5f469b404eb6d945",
+  "stop_state": "454783869cf197b455df9630ab933467",
+  "event_str": "TouchEvent(state=82ad39fa339a35fd5f469b404eb6d945, view=6356919714b0fe53d7eb34459fa9fb33)"
+}

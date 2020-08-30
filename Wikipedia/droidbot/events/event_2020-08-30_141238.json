@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_141238",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": false,
+      "is_password": false,
+      "focusable": false,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          96,
+          890
+        ],
+        [
+          984,
+          1360
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/messageTextView",
+      "checked": false,
+      "text": "Suggested edits is a new way to edit Wikipedia on Android. It helps you make small but vital contributions to Wikipedia.\nOur goal is to make editing easier and more accessible for everyone! Log in or join Wikipedia to get started.",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 20,
+      "temp_id": 23,
+      "size": "888*470",
+      "signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/messageTextView[text]None[enabled,,]",
+      "view_str": "c9e195081d9f00d34427624af7f828e3",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/messageTextView"
+    }
+  },
+  "start_state": "e175e650bc90771abaa782e31e6cd7a5",
+  "stop_state": "5615f127184a99a7ae2ad5510dc5509e",
+  "event_str": "TouchEvent(state=e175e650bc90771abaa782e31e6cd7a5, view=c9e195081d9f00d34427624af7f828e3)"
+}

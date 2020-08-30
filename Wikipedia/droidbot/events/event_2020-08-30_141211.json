@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_141211",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          48,
+          867
+        ],
+        [
+          1032,
+          924
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/about_contributors",
+      "checked": false,
+      "text": "Team page",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 12,
+      "temp_id": 17,
+      "size": "984*57",
+      "signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/about_contributors[text]Team page[enabled,,]",
+      "view_str": "e3a70d6887f17c03e11e181d216370b5",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/about_contributors"
+    }
+  },
+  "start_state": "82ad39fa339a35fd5f469b404eb6d945",
+  "stop_state": "a2dac0d6cfc1dbcaf499e9e4246a76b5",
+  "event_str": "TouchEvent(state=82ad39fa339a35fd5f469b404eb6d945, view=e3a70d6887f17c03e11e181d216370b5)"
+}

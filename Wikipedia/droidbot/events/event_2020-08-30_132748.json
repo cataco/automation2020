@@ -1,0 +1,10 @@
+{
+  "tag": "2020-08-30_132748",
+  "event": {
+    "event_type": "key",
+    "name": "BACK"
+  },
+  "start_state": "8174fa19f11eb0549de5e77a4f5fe1ba",
+  "stop_state": "5b990f11139ffaa2f5c714320399436c",
+  "event_str": "KeyEvent(state=8174fa19f11eb0549de5e77a4f5fe1ba, name=BACK)"
+}

@@ -1,0 +1,10 @@
+{
+  "tag": "2020-08-30_132922",
+  "event": {
+    "event_type": "intent",
+    "intent": "am start org.wikipedia.dev/org.wikipedia.main.MainActivity"
+  },
+  "start_state": "c974d2d1972becbf69a9b0c43dba0c41",
+  "stop_state": "5fa530bc603646a063a8de3cf53b246c",
+  "event_str": "IntentEvent(intent='am start org.wikipedia.dev/org.wikipedia.main.MainActivity')"
+}

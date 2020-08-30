@@ -1,0 +1,49 @@
+{
+  "tag": "2020-08-30_140811",
+  "event": {
+    "event_type": "set_text",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": true,
+      "clickable": true,
+      "is_password": true,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          48,
+          724
+        ],
+        [
+          1032,
+          909
+        ]
+      ],
+      "resource_id": null,
+      "checked": false,
+      "text": "Repeat password",
+      "class": "android.widget.EditText",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 29,
+      "temp_id": 30,
+      "size": "984*185",
+      "signature": "[class]android.widget.EditText[resource_id]None[text]Repeat password[enabled,,]",
+      "view_str": "4aacfbdfa0d104a47c0bfc553d144148",
+      "content_free_signature": "[class]android.widget.EditText[resource_id]None"
+    },
+    "text": "HelloWorld"
+  },
+  "start_state": "5615f127184a99a7ae2ad5510dc5509e",
+  "stop_state": "7a2dd98e4b55075a613666a94f4d9030",
+  "event_str": "SetTextEvent(state=5615f127184a99a7ae2ad5510dc5509e, view=4aacfbdfa0d104a47c0bfc553d144148, text=HelloWorld)"
+}

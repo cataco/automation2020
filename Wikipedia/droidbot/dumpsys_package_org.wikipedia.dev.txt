@@ -1,0 +1,220 @@
+Activity Resolver Table:
+  Full MIME Types:
+      text/plain:
+        463a0a5 org.wikipedia.dev/org.wikipedia.search.SearchActivity filter 2c0ce0f
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          Type: "text/plain"
+        463a0a5 org.wikipedia.dev/org.wikipedia.search.SearchActivity filter 97a7e9c
+          Action: "android.intent.action.PROCESS_TEXT"
+          Category: "android.intent.category.DEFAULT"
+          Type: "text/plain"
+
+  Base MIME Types:
+      text:
+        463a0a5 org.wikipedia.dev/org.wikipedia.search.SearchActivity filter 2c0ce0f
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          Type: "text/plain"
+        463a0a5 org.wikipedia.dev/org.wikipedia.search.SearchActivity filter 97a7e9c
+          Action: "android.intent.action.PROCESS_TEXT"
+          Category: "android.intent.category.DEFAULT"
+          Type: "text/plain"
+
+  Schemes:
+      http:
+        dfbdc7a org.wikipedia.dev/org.wikipedia.page.PageActivity filter be2fee9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "http"
+          Scheme: "https"
+          Authority: ".wikipedia.org": -1 WILD
+          Authority: ".wikipedia.org": -1 WILD
+          Path: "PatternMatcher{PREFIX: /wiki/}"
+          Path: "PatternMatcher{GLOB: /zh.*}"
+      https:
+        dfbdc7a org.wikipedia.dev/org.wikipedia.page.PageActivity filter be2fee9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "http"
+          Scheme: "https"
+          Authority: ".wikipedia.org": -1 WILD
+          Authority: ".wikipedia.org": -1 WILD
+          Path: "PatternMatcher{PREFIX: /wiki/}"
+          Path: "PatternMatcher{GLOB: /zh.*}"
+      content:
+        1c63c2b org.wikipedia.dev/org.wikipedia.settings.LicenseActivity filter a87b76e
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Path: "PatternMatcher{PREFIX: /android_asset/licenses/}"
+
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        bfee888 org.wikipedia.dev/org.wikipedia.main.MainActivity filter 1671b70
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+          Category: "android.intent.category.MULTIWINDOW_LAUNCHER"
+
+  MIME Typed Actions:
+      android.intent.action.SEND:
+        463a0a5 org.wikipedia.dev/org.wikipedia.search.SearchActivity filter 2c0ce0f
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          Type: "text/plain"
+      android.intent.action.PROCESS_TEXT:
+        463a0a5 org.wikipedia.dev/org.wikipedia.search.SearchActivity filter 97a7e9c
+          Action: "android.intent.action.PROCESS_TEXT"
+          Category: "android.intent.category.DEFAULT"
+          Type: "text/plain"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      .notifications.NotificationPollBroadcastReceiver.ACTION_POLL:
+        792a221 org.wikipedia.dev/org.wikipedia.notifications.NotificationPollBroadcastReceiver filter 44549b3
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: ".notifications.NotificationPollBroadcastReceiver.ACTION_POLL"
+      android.intent.action.BOOT_COMPLETED:
+        792a221 org.wikipedia.dev/org.wikipedia.notifications.NotificationPollBroadcastReceiver filter 44549b3
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: ".notifications.NotificationPollBroadcastReceiver.ACTION_POLL"
+      android.appwidget.action.APPWIDGET_UPDATE:
+        d5b4646 org.wikipedia.dev/org.wikipedia.widgets.WidgetProviderSearch filter a5640ed
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+        f6a7007 org.wikipedia.dev/org.wikipedia.widgets.WidgetProviderFeaturedPage filter 2d00b22
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+
+Service Resolver Table:
+  Non-Data Actions:
+      android.content.SyncAdapter:
+        ade0534 org.wikipedia.dev/org.wikipedia.readinglist.sync.ReadingListSyncService filter 3149317
+          Action: "android.content.SyncAdapter"
+      android.accounts.AccountAuthenticator:
+        563f5d org.wikipedia.dev/org.wikipedia.auth.AuthenticatorService filter f5dd304
+          Action: "android.accounts.AccountAuthenticator"
+
+Registered ContentProviders:
+  org.wikipedia.dev/org.wikipedia.database.ReadingListsContentProvider:
+    Provider{af580d2 org.wikipedia.dev/org.wikipedia.database.ReadingListsContentProvider}
+  org.wikipedia.dev/leakcanary.internal.AppWatcherInstaller$MainProcess:
+    Provider{c3405a3 org.wikipedia.dev/leakcanary.internal.AppWatcherInstaller$MainProcess}
+  org.wikipedia.dev/org.wikipedia.database.AppContentProvider:
+    Provider{af040a0 org.wikipedia.dev/org.wikipedia.database.AppContentProvider}
+  org.wikipedia.dev/androidx.core.content.FileProvider:
+    Provider{7bc7459 org.wikipedia.dev/androidx.core.content.FileProvider}
+
+ContentProvider Authorities:
+  [org.wikipedia.dev.sync.readinglists]:
+    Provider{af580d2 org.wikipedia.dev/org.wikipedia.database.ReadingListsContentProvider}
+      applicationInfo=ApplicationInfo{c86d81e org.wikipedia.dev}
+  [org.wikipedia.dev.leakcanary-installer]:
+    Provider{c3405a3 org.wikipedia.dev/leakcanary.internal.AppWatcherInstaller$MainProcess}
+      applicationInfo=ApplicationInfo{c86d81e org.wikipedia.dev}
+  [org.wikipedia.dev]:
+    Provider{af040a0 org.wikipedia.dev/org.wikipedia.database.AppContentProvider}
+      applicationInfo=ApplicationInfo{c86d81e org.wikipedia.dev}
+  [org.wikipedia.dev.fileprovider]:
+    Provider{7bc7459 org.wikipedia.dev/androidx.core.content.FileProvider}
+      applicationInfo=ApplicationInfo{c86d81e org.wikipedia.dev}
+
+Key Set Manager:
+  [org.wikipedia.dev]
+      Signing KeySets: 111
+
+Packages:
+  Package [org.wikipedia.dev] (7758ff):
+    userId=10165
+    pkg=Package{43acb96 org.wikipedia.dev}
+    codePath=/data/app/org.wikipedia.dev-hKI2WWo6s0tAbvFIC3_zrQ==
+    resourcePath=/data/app/org.wikipedia.dev-hKI2WWo6s0tAbvFIC3_zrQ==
+    legacyNativeLibraryDir=/data/app/org.wikipedia.dev-hKI2WWo6s0tAbvFIC3_zrQ==/lib
+    primaryCpuAbi=null
+    secondaryCpuAbi=null
+    versionCode=50330 minSdk=21 targetSdk=30
+    versionName=2.7.50330-dev-2020-08-30
+    splits=[base]
+    apkSigningVersion=2
+    applicationInfo=ApplicationInfo{c86d81e org.wikipedia.dev}
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    hwflags=[ ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION HAS_DOMAIN_URLS ]
+    dataDir=/data/user/0/org.wikipedia.dev
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesOptionalLibraries:
+      com.sec.android.app.multiwindow
+    timeStamp=2020-08-30 13:26:15
+    firstInstallTime=2020-08-30 13:26:16
+    lastUpdateTime=2020-08-30 13:26:16
+    signatures=PackageSignatures{428c6cc version:2, signatures:[1f06db4b], past signatures:[]}
+    installPermissionsFixed=true
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    requested permissions:
+      android.permission.INTERNET
+      android.permission.WRITE_EXTERNAL_STORAGE
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.VIBRATE
+      android.permission.RECEIVE_BOOT_COMPLETED
+      android.permission.WAKE_LOCK
+      com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+      android.permission.READ_EXTERNAL_STORAGE
+    install permissions:
+      com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE: granted=true
+      android.permission.RECEIVE_BOOT_COMPLETED: granted=true
+      android.permission.INTERNET: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      android.permission.VIBRATE: granted=true
+      android.permission.WAKE_LOCK: granted=true
+    User 0: ceDataInode=35338 installed=true hidden=false suspended=false stopped=true notLaunched=true enabled=0 instant=false virtual=false
+      gids=[3003]
+      runtime permissions:
+
+Package Changes:
+  Sequence number=203
+  User 0:
+    seq=9, package=com.intsig.camscanner
+    seq=18, package=com.Slack
+    seq=28, package=com.facebook.appmanager
+    seq=29, package=com.facebook.system
+    seq=41, package=com.google.ar.core
+    seq=42, package=co.com.peoplepass.app
+    seq=43, package=br.com.easytaxi
+    seq=45, package=com.google.android.apps.docs
+    seq=46, package=com.netflix.mediaclient
+    seq=48, package=com.google.android.googlequicksearchbox
+    seq=59, package=com.google.android.apps.photos
+    seq=60, package=com.adobe.reader
+    seq=68, package=no.mobitroll.kahoot.android
+    seq=69, package=com.linkedin.android
+    seq=70, package=com.google.android.talk
+    seq=72, package=com.huawei.himovie.overseas
+    seq=73, package=com.booking
+    seq=74, package=com.google.android.play.games
+    seq=87, package=com.whatsapp
+    seq=133, package=com.google.android.youtube
+    seq=167, package=com.android.vending
+    seq=176, package=com.facebook.orca
+    seq=177, package=com.facebook.katana
+    seq=189, package=com.google.android.gms
+    seq=190, package=com.google.android.apps.docs.editors.slides
+    seq=191, package=com.google.android.apps.tachyon
+    seq=192, package=com.spotify.music
+    seq=193, package=com.google.android.gm
+    seq=194, package=com.nequi.MobileApp
+    seq=195, package=com.android.shell
+    seq=196, package=com.android.settings
+    seq=199, package=com.android.email
+    seq=201, package=org.wikipedia.dev
+    seq=202, package=io.github.ylimit.droidbotapp
+
+
+Dexopt state:
+  [org.wikipedia.dev]
+    path: /data/app/org.wikipedia.dev-hKI2WWo6s0tAbvFIC3_zrQ==/base.apk
+      arm64: [status=run-from-apk] [reason=unknown]
+
+
+Compiler stats:
+  [org.wikipedia.dev]
+     base.apk - 17047

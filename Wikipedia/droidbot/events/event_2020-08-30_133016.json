@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_133016",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          48,
+          1023
+        ],
+        [
+          1032,
+          1167
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/login_create_account_button",
+      "checked": false,
+      "text": "JOIN WIKIPEDIA",
+      "class": "android.widget.Button",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 30,
+      "temp_id": 32,
+      "size": "984*144",
+      "signature": "[class]android.widget.Button[resource_id]org.wikipedia.dev:id/login_create_account_button[text]JOIN WIKIPEDIA[enabled,,]",
+      "view_str": "02202ec6ac2d948555833b273a836166",
+      "content_free_signature": "[class]android.widget.Button[resource_id]org.wikipedia.dev:id/login_create_account_button"
+    }
+  },
+  "start_state": "d5892e6d404215cf3f4045bda5976132",
+  "stop_state": "5615f127184a99a7ae2ad5510dc5509e",
+  "event_str": "TouchEvent(state=d5892e6d404215cf3f4045bda5976132, view=02202ec6ac2d948555833b273a836166)"
+}

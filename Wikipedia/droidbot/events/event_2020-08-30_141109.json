@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_141109",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": false,
+      "is_password": false,
+      "focusable": false,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          504,
+          2006
+        ],
+        [
+          576,
+          2078
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/icon",
+      "checked": false,
+      "text": null,
+      "class": "android.widget.ImageView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 38,
+      "temp_id": 39,
+      "size": "72*72",
+      "signature": "[class]android.widget.ImageView[resource_id]org.wikipedia.dev:id/icon[text]None[enabled,,]",
+      "view_str": "fbd476cb86fb4c778de84d3961b9cc7d",
+      "content_free_signature": "[class]android.widget.ImageView[resource_id]org.wikipedia.dev:id/icon"
+    }
+  },
+  "start_state": "e175e650bc90771abaa782e31e6cd7a5",
+  "stop_state": "bfe8d0659dc7e0fdccb485bc2ac8921d",
+  "event_str": "TouchEvent(state=e175e650bc90771abaa782e31e6cd7a5, view=fbd476cb86fb4c778de84d3961b9cc7d)"
+}

@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_141643",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": false,
+      "is_password": false,
+      "focusable": false,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          216,
+          125
+        ],
+        [
+          804,
+          222
+        ]
+      ],
+      "resource_id": null,
+      "checked": false,
+      "text": "Create an account",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 5,
+      "temp_id": 7,
+      "size": "588*97",
+      "signature": "[class]android.widget.TextView[resource_id]None[text]Create an account[enabled,,]",
+      "view_str": "6a9359aa37d5f48be3674bceaae7fdcd",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]None"
+    }
+  },
+  "start_state": "f67a61b46d753eb7be6c6a0946302054",
+  "stop_state": "f67a61b46d753eb7be6c6a0946302054",
+  "event_str": "TouchEvent(state=f67a61b46d753eb7be6c6a0946302054, view=6a9359aa37d5f48be3674bceaae7fdcd)"
+}

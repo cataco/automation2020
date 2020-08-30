@@ -1,0 +1,48 @@
+{
+  "tag": "2020-08-30_140508",
+  "event": {
+    "event_type": "touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": null,
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          144,
+          1406
+        ],
+        [
+          810,
+          1574
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/main_drawer_login_button",
+      "checked": false,
+      "text": "LOG IN / JOIN WIKIPEDIA",
+      "class": "android.widget.Button",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": false,
+      "parent": 10,
+      "temp_id": 12,
+      "size": "666*168",
+      "signature": "[class]android.widget.Button[resource_id]org.wikipedia.dev:id/main_drawer_login_button[text]LOG IN / JOIN WIKIPEDIA[enabled,,]",
+      "view_str": "6018e514044105dd13706ae485ca05dc",
+      "content_free_signature": "[class]android.widget.Button[resource_id]org.wikipedia.dev:id/main_drawer_login_button"
+    }
+  },
+  "start_state": "2e87e8dc06d0bdf69263f9d71a61491a",
+  "stop_state": "5615f127184a99a7ae2ad5510dc5509e",
+  "event_str": "TouchEvent(state=2e87e8dc06d0bdf69263f9d71a61491a, view=6018e514044105dd13706ae485ca05dc)"
+}

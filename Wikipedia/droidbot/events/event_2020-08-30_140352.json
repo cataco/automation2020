@@ -1,0 +1,49 @@
+{
+  "tag": "2020-08-30_140352",
+  "event": {
+    "event_type": "long_touch",
+    "x": null,
+    "y": null,
+    "view": {
+      "package": "org.wikipedia.dev",
+      "visible": true,
+      "checkable": false,
+      "child_count": 0,
+      "editable": false,
+      "clickable": true,
+      "is_password": false,
+      "focusable": true,
+      "enabled": true,
+      "content_description": "Decrease text size",
+      "children": [],
+      "focused": false,
+      "bounds": [
+        [
+          48,
+          1275
+        ],
+        [
+          144,
+          1371
+        ]
+      ],
+      "resource_id": "org.wikipedia.dev:id/buttonDecreaseTextSize",
+      "checked": false,
+      "text": "T",
+      "class": "android.widget.TextView",
+      "scrollable": false,
+      "selected": false,
+      "long_clickable": true,
+      "parent": 13,
+      "temp_id": 14,
+      "size": "96*96",
+      "signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/buttonDecreaseTextSize[text]T[enabled,,]",
+      "view_str": "9d8667c5396da506f78c526fa12c1f68",
+      "content_free_signature": "[class]android.widget.TextView[resource_id]org.wikipedia.dev:id/buttonDecreaseTextSize"
+    },
+    "duration": 2000
+  },
+  "start_state": "81e2b5585de002d4dd57c4333f6cd6ed",
+  "stop_state": "81e2b5585de002d4dd57c4333f6cd6ed",
+  "event_str": "LongTouchEvent(state=81e2b5585de002d4dd57c4333f6cd6ed, view=9d8667c5396da506f78c526fa12c1f68, duration=2000)"
+}
