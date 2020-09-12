@@ -9,6 +9,7 @@ build-environment:
 	mkdir temp
 	cp -R backend temp/backend
 	cp -R deployenv/bin temp/bin
+	cp -R cypress temp
 	cp -R requirements.txt temp/requirements.txt
 	cp deployenv/Dockerfile temp/Dockerfile
 	COMMIT_HASH="$$(git rev-parse HEAD)" && \

@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -25,7 +25,7 @@ SECRET_KEY = '8ogvk(o9m05&iwx)j0%3%u8cet)9*0il^2ah4vcbnwhc%*v%qv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'djcelery',
+    'djrill',
+    'celery',
+    'tests',
+    'django_celery_beat',
+    'django_celery_results',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -66,6 +74,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
@@ -115,6 +125,18 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
+
+
+# -- Celery
+CELERY_TIMEZONE = 'UTC'
+CELERY_ENABLE_UTC = True
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_PERSISTENT = True
+CELERY_DEFAULT_DELIVERY_MODE = 'persistent'
+RABBIT_IP = os.environ.get('RABBIT_IP')
+RABBIT_PORT = os.environ.get('RABBIT_PORT')
+AMQP_HOST = '%s:%s' % (RABBIT_IP, RABBIT_PORT)
+BROKER_URL = 'amqp://guest:guest@rabbit//'
