@@ -1,0 +1,8 @@
+.idea
+.VSCode
+venv
+__pycache__
+venv2
+images/
+venv3
+*.avi
