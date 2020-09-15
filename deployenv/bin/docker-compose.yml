@@ -2,6 +2,8 @@ version: '2'
 services:
   #backend
   backend:
+    ipc: host
+    shm_size: 1024M
     image: "backend-${ENVIRONMENT}-${CURRENT_BRANCH}-${COMMIT_HASH}"
     container_name: "backend-${ENVIRONMENT}"
     environment:
@@ -24,6 +26,8 @@ services:
       - medias:/srv/www/backend/backend/medias
   # django celery ---------------------------------------------------------------------
   celery:
+    ipc: host
+    shm_size: 1024M
     image: "backend-${ENVIRONMENT}-${CURRENT_BRANCH}-${COMMIT_HASH}"
     container_name: "backend-${ENVIRONMENT}-celery"
     environment:
@@ -70,6 +74,8 @@ services:
 
     # flower ---------------------------------------------------------------------
   flower:
+    ipc: host
+    shm_size: 1024M
     image: "backend-${ENVIRONMENT}-${CURRENT_BRANCH}-${COMMIT_HASH}"
     container_name: "backend-${ENVIRONMENT}-flower"
     environment:
