@@ -1,0 +1,37 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <!--Titulo del test-->
+    <mat-expansion-panel-header style="height: 100px;">
+      <mat-panel-title>
+        {{testTittle}}
+        <span></span>
+        <mat-icon>timer</mat-icon>
+        {{stats.duration/1000}}s
+        <mat-icon>content_paste</mat-icon>
+        {{stats.tests}}             
+        <mat-icon>close</mat-icon>
+        {{stats.failures}}   
+        <mat-icon>check</mat-icon>
+        {{stats.passes}}   
+
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!--Listado del test-->
+    <mat-expansion-panel hideToggle *ngFor="let result of testList">
+      <mat-expansion-panel-header class="right-aligned-header">
+        <mat-panel-title>
+          <mat-icon *ngIf="result.pass">check</mat-icon>
+          <mat-icon *ngIf="!result.pass">cancel</mat-icon>
+          {{result.title}}        
+        </mat-panel-title>
+        <mat-panel-description>
+          {{result.duration/1000}}s
+          <mat-icon>timer</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      {{result.err.message}}      
+    </mat-expansion-panel>
+    
+  </mat-expansion-panel>
+</mat-accordion>
