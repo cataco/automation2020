@@ -146,3 +146,4 @@ RABBIT_IP = os.environ.get('RABBIT_IP')
 RABBIT_PORT = os.environ.get('RABBIT_PORT')
 AMQP_HOST = '%s:%s' % (RABBIT_IP, RABBIT_PORT)
 BROKER_URL = 'amqp://guest:guest@rabbit//'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
