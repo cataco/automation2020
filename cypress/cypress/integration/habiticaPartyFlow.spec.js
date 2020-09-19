@@ -8,7 +8,7 @@ context('Habitica Tests - Party Flow', () => {
     it('creates a party', () => {
         cy.contains('Start a Party').click();
         cy.contains('Create a Party').click();
-        cy.contains("myname123fff's Party").should('be.visble');
+        cy.contains("myname123fff's Party").should('be.visible');
         cy.get('.item-with-icon .number').should('have.text', '1')
     });
 
@@ -17,7 +17,7 @@ context('Habitica Tests - Party Flow', () => {
         cy.get('input.form-control').clear().type('My Test Party');
         cy.get('textarea').type('Description Text for Party With Special Chars %% ... ?*');
         cy.get('.btn-md').click();
-        cy.contains("My Test Party").should('be.visble');
+        cy.contains("My Test Party").should('be.visible');
         cy.contains('Description Text for Party With Special Chars %% ... ?*').should('be.visible');
     });
 
@@ -25,14 +25,14 @@ context('Habitica Tests - Party Flow', () => {
         cy.contains('Invite Friends').click();
         cy.get('.input-group input').first().type('testemail@mail.com');
         cy.contains('Send Invites').click();
-        cy.get("Invitation Sent").should('be.visible');
+        cy.contains("Invitation sent!").should('be.visible');
     });
 
     it('deletes a party', () => {
         cy.get('.btn-danger').click();
         cy.on('window:confirm', () => true)
-        .contains('Start a Party').click()
-        .contains('Create a Party').should('be.visible');
+            .contains('Start a Party').click();
+        cy.contains('Create a Party').should('be.visible');
     });
 
     function login() {
@@ -40,6 +40,7 @@ context('Habitica Tests - Party Flow', () => {
         cy.get('.login-button').click().wait(1000)
             .get('#usernameInput').type('myname123fff');
         cy.get('#passwordInput').type('myname123fff');
-        cy.get('.btn-info[type="submit"]').click();
+        cy.get('.btn-info[type="submit"]').click()
+            .wait(1000).get('body').type('{esc}', { force: true });
     }
 });

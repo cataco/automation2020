@@ -57,7 +57,8 @@ context('Habitica Tests - Habit CRUD', () => {
         cy.get('.login-button').click().wait(1000)
             .get('#usernameInput').type('myname123fff');
         cy.get('#passwordInput').type('myname123fff');
-        cy.get('.btn-info[type="submit"]').click();
+        cy.get('.btn-info[type="submit"]').click()
+            .wait(1000).get('body').type('{esc}', { force: true });
     }
 });
 

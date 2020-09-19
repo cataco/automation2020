@@ -7,7 +7,6 @@ context('Habitica Tests - Daily CRUD', () => {
 
 
     it('creates a new daily task', () => {
-        login();
         cy.get('#create-task-btn').click();
         cy.get('.create-task-btn .icon-daily').click();
         cy.get('.input-title').type('Study Cypress');
@@ -50,6 +49,7 @@ context('Habitica Tests - Daily CRUD', () => {
             .get('#usernameInput').type('myname123fff');
         cy.get('#passwordInput').type('myname123fff');
         cy.get('.btn-info[type="submit"]').click();
+        cy.wait(1000).get('body').type('{esc}', { force: true });
     }
 });
 

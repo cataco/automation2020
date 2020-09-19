@@ -1,11 +1,11 @@
-context('Habitica Tests - Challenge CRUD', () => {
+context('Habitica Tests - Challenge Flow', () => {
 
     before(() => {
         cy.visit('https://habitica.com/static/home');
         login();
     })
 
-    it('creates public challenge', () => {
+    it('tries to create a public challenge without prize', () => {
         cy.get('.nav-link[href="/challenges/myChallenges"]').click();
         cy.get('.create-challenge-button').click();
         cy.get('[placeholder="What is your Challenge name?"]').type('Cypress Public Challenge');
@@ -17,6 +17,32 @@ context('Habitica Tests - Challenge CRUD', () => {
             .get('input[id="challenge-modal-cat-creativity"]').check({ force: true });
         cy.contains('Close').click({ force: true });
         cy.contains('Add Challenge Tasks').click();
+        cy.get('.close').click();
+    });
+
+    it('finds and joins public challenge', () => {
+        cy.get('.nav-link[href="/challenges/findChallenges"]').click();
+        cy.get('.challenge-title p').first().click();
+        cy.get('.member-count').should('be.visible');
+        cy.get('.btn-success').click();
+        //Validate tasks form public challegne have been added to the tasks dashboard
+        cy.get('.task-wrapper')
+            .its('length')
+            .then(lengthOfTasks => {
+                cy.get('.nav-link[href="/"]').click();
+                cy.get('.task-wrapper').should('have.length', lengthOfTasks)
+            });
+    });
+
+    it('leaves public challenge', () => {
+        cy.get('.nav-link[href="/challenges/myChallenges"]').click();
+        cy.get('.challenge-title p').first().click();
+        cy.get('.btn-danger').click(); 
+        cy.get('.modal-body .btn-danger').click();
+        cy.get('.nav-link[href="/challenges/myChallenges"]').first().click();
+        cy.contains("You don't have any Challenges.").should('be.visible');
+        cy.get('.nav-link[href="/"]').click();
+        cy.get('.task-wrapper').should('not.exist');
     });
 
     function login() {
@@ -25,6 +51,7 @@ context('Habitica Tests - Challenge CRUD', () => {
             .get('#usernameInput').type('myname123fff');
         cy.get('#passwordInput').type('myname123fff');
         cy.get('.btn-info[type="submit"]').click();
+        cy.wait(1000).get('body').type('{esc}', { force: true });
     }
 });
 

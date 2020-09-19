@@ -7,7 +7,6 @@ context('Habitica Tests - Reward CRUD', () => {
 
 
     it('creates a new Reward', () => {
-        login();
         cy.get('#create-task-btn').click();
         cy.get('.create-task-btn .icon-reward').click();
         cy.get('.input-title').type('Automation Reward');
@@ -40,10 +39,11 @@ context('Habitica Tests - Reward CRUD', () => {
 
     function login() {
         cy.visit('https://habitica.com/static/home');
-        cy.get('.login-button').click().wait(1000)
-            .get('#usernameInput').type('myname123fff');
-        cy.get('#passwordInput').type('myname123fff');
-        cy.get('.btn-info[type="submit"]').click();
+        cy.get('.login-button').click().wait(2000)
+            .get('#usernameInput').type('myname123fff')
+            .get('#passwordInput').type('myname123fff')
+            .get('.btn-info[type="submit"]').click()
+            .wait(1000).get('body').type('{esc}', { force: true });
     }
 });
 

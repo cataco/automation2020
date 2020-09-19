@@ -7,7 +7,6 @@ context('Habitica Tests - To Do CRUD', () => {
 
 
     it('creates a new To Do', () => {
-        login();
         cy.get('#create-task-btn').click();
         cy.get('.create-task-btn .icon-todo').click();
         cy.get('.input-title').type('Automation Project');
@@ -48,10 +47,11 @@ context('Habitica Tests - To Do CRUD', () => {
 
     function login() {
         cy.visit('https://habitica.com/static/home');
-        cy.get('.login-button').click().wait(1000)
+        cy.get('.login-button').click().wait(2000)
             .get('#usernameInput').type('myname123fff');
         cy.get('#passwordInput').type('myname123fff');
-        cy.get('.btn-info[type="submit"]').click();
+        cy.get('.btn-info[type="submit"]').click()
+            .wait(1000).get('body').type('{esc}', { force: true });
     }
 });
 
