@@ -18,6 +18,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatCardModule} from "@angular/material/card";
 import {AppRoutingModule} from "./app-routing.module";
 import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 // @ts-ignore
@@ -42,6 +43,7 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
+    ReactiveFormsModule,
 
   ],
   providers: [],
