@@ -59,7 +59,7 @@ export class CreateTestComponent implements OnInit {
           this.files.splice(0, 1)
       }
     }, error => {
-      console.log('Error registrandose-> ', error);
+      console.log('Error registrandose-> ', error.error);
       Swal.fire('Oops...', 'Parece que hubo un problema con el archivo, revisa su extension e intenta de nuevo', 'error');
       this.progress = 0;
     });
@@ -86,7 +86,7 @@ export class CreateTestComponent implements OnInit {
           this.files.splice(0, 1)
       }
     }, error => {
-      console.log('Error registrandose-> ', error);
+      console.log('Error registrandose-> ', error.error);
       Swal.fire('Oops...', 'Parece que hubo un problema con el archivo, revisa su extension e intenta de nuevo', 'error');
       this.progress = 0;
     });
