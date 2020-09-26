@@ -10,6 +10,7 @@ build-environment:
 	cp -R backend temp/backend
 	cp -R deployenv/bin temp/bin
 	cp -R cypress temp
+	cp -R cypress_feature temp
 	cp -R requirements.txt temp/requirements.txt
 	cp deployenv/Dockerfile temp/Dockerfile
 	COMMIT_HASH="$$(git rev-parse HEAD)" && \
@@ -38,3 +39,4 @@ clear-environment-containers:
 	docker stop backend-$(environment) && docker rm backend-$(environment) || true
 	docker stop backend-$(environment)-celery && docker rm backend-$(environment)-celery || true
 	docker stop rabbit-$(environment) && docker rm rabbit-$(environment) || true
+	docker stop backend-$(environment)-flower && docker rm backend-$(environment)-flower || true

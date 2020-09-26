@@ -22,6 +22,7 @@ services:
     env_file: .env
     depends_on:
       - database
+      - rabbit
     volumes:
       - medias:/srv/www/backend/backend/medias
   # django celery ---------------------------------------------------------------------
