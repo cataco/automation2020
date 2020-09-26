@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Framework, RandomTest, TestStrategy, End2End, TestStrategy, Browser, Reports, BDDTest
+from .models import Framework, RandomTest, TestStrategy, End2End, Browser, Reports, BDDTest
 # Register your models here.
 
 class FrameworkAdmin(admin.ModelAdmin):
