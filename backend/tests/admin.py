@@ -1,9 +1,6 @@
 from django.contrib import admin
-from .models import Framework, TestRequest, Reports, RandomElement, RandomTest
-
-
+from .models import Framework, RandomTest, TestStrategy, End2End, TestStrategy, Browser, Reports, BDDTest
 # Register your models here.
-
 
 class FrameworkAdmin(admin.ModelAdmin):
     list_display = (
@@ -11,21 +8,16 @@ class FrameworkAdmin(admin.ModelAdmin):
         'name'
     )
 
-
 admin.site.register(Framework, FrameworkAdmin)
 
 
-class TestRequestAdmin(admin.ModelAdmin):
+class TestStrategyAdmin(admin.ModelAdmin):
     list_display = (
         'name',
-        'framework',
         'createdAt',
-        'testScript'
     )
-    list_filter = ['framework']
-
-
-admin.site.register(TestRequest, TestRequestAdmin)
+    
+admin.site.register(TestStrategy, TestStrategyAdmin)
 
 
 class ReportsAdmin(admin.ModelAdmin):
@@ -34,31 +26,46 @@ class ReportsAdmin(admin.ModelAdmin):
         'test',
         'createdAt',
     )
-    list_filter = ['test__framework']
+    list_filter = ['test__name']
 
 
 admin.site.register(Reports, ReportsAdmin)
 
 
-class RandomElementAdmin(admin.ModelAdmin):
+class End2EndAdmin(admin.ModelAdmin):
     list_display = (
-        'key',
-        'value'
+        'name',
+        'appUrl',
+        'framework',
+        'testScript',
+        'createdAt'
     )
-    list_filter = ['key']
+    list_filter = ['framework']
 
-
-admin.site.register(RandomElement, RandomElementAdmin)
-
+admin.site.register(End2End, End2EndAdmin)
 
 class RandomTestAdmin(admin.ModelAdmin):
     list_display = (
-        'createdAt',
         'name',
         'appUrl',
         'eventsNumber',
+        'createdAt',
     )
     list_filter = ['appUrl']
 
 
 admin.site.register(RandomTest, RandomTestAdmin)
+
+class BddTestAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'appUrl',
+        'features',
+        'stepsScript',
+        'createdAt'
+    )
+
+admin.site.register(BDDTest, BddTestAdmin)
+
+models = [Browser]
+admin.site.register(models)
