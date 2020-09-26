@@ -1,0 +1,178 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 0,
+    "pending": 0,
+    "failures": 4,
+    "start": "2020-09-18T22:13:08.965Z",
+    "end": "2020-09-18T22:13:43.014Z",
+    "duration": 34049,
+    "testsRegistered": 4,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7c89858c-ac8a-4715-9bc3-9a0f93f7ac4f",
+      "title": "",
+      "fullFile": "cypress\\integration\\habiticaDailyFlow.spec.js",
+      "file": "cypress\\integration\\habiticaDailyFlow.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c5985d9b-03df-42d7-b302-e2007ded0523",
+          "title": "Habitica Tests - Daily CRUD",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "creates a new daily task",
+              "fullTitle": "Habitica Tests - Daily CRUD creates a new daily task",
+              "timedOut": null,
+              "duration": 15047,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "login();\ncy.get('#create-task-btn').click();\ncy.get('.create-task-btn .icon-daily').click();\ncy.get('.input-title').type('Study Cypress');\ncy.get('.btn-primary.btn-footer').click();\ncy.contains('Study Cypress').should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `.login-button`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `.login-button`, but never found it.\n    at login (https://habitica.com/__cypress/tests?p=cypress\\integration\\habiticaDailyFlow.spec.js:140:8)\n    at Context.eval (https://habitica.com/__cypress/tests?p=cypress\\integration\\habiticaDailyFlow.spec.js:105:5)",
+                "diff": null
+              },
+              "uuid": "b67cfa7b-88cd-4e47-b594-06ac62f9cef9",
+              "parentUUID": "c5985d9b-03df-42d7-b302-e2007ded0523",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "reads a new daily task",
+              "fullTitle": "Habitica Tests - Daily CRUD reads a new daily task",
+              "timedOut": null,
+              "duration": 6388,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.wait(1000).contains('Study Cypress').click();\ncy.get('.input-title').should('have.value', 'Study Cypress');\ncy.get('.difficulty-item.isButton').contains('Easy').should('be.visible');\ncy.get('button span.label').contains('Weekly').should('be.visible');\ncy.get('.input-group-outer input').should('have.value', '1');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find content: 'Study Cypress' but never did.",
+                "estack": "AssertionError: Timed out retrying: Expected to find content: 'Study Cypress' but never did.\n    at Context.eval (https://habitica.com/__cypress/tests?p=cypress\\integration\\habiticaDailyFlow.spec.js:113:19)",
+                "diff": null
+              },
+              "uuid": "170a0422-f8e3-4b95-977e-35b977623108",
+              "parentUUID": "c5985d9b-03df-42d7-b302-e2007ded0523",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "edits a new daily task",
+              "fullTitle": "Habitica Tests - Daily CRUD edits a new daily task",
+              "timedOut": null,
+              "duration": 4448,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.input-title').clear().type('Study Cypress - EDIT');\ncy.get('.input-group-outer input').clear().type('2');\ncy.get('button span.label').contains('Weekly').click();\ncy.get('span.label').contains('Daily').click();\ncy.get('.m-auto').click();\ncy.contains('Study Cypress - EDIT').click();\ncy.get('.input-title').should('have.value', 'Study Cypress - EDIT');\ncy.get('.difficulty-item.isButton').should('be.visible');\ncy.get('button span.label').contains('Daily').should('be.visible');\ncy.get('.input-group-outer input').should('have.value', '2');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `.input-title`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `.input-title`, but never found it.\n    at Context.eval (https://habitica.com/__cypress/tests?p=cypress\\integration\\habiticaDailyFlow.spec.js:120:8)",
+                "diff": null
+              },
+              "uuid": "7a48f43e-11b5-4de7-bc1e-0f18fd707228",
+              "parentUUID": "c5985d9b-03df-42d7-b302-e2007ded0523",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deletes a daily task",
+              "fullTitle": "Habitica Tests - Daily CRUD deletes a daily task",
+              "timedOut": null,
+              "duration": 4417,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.delete-task-btn').click();\ncy.on('window:confirm', function () {\n  return true;\n}).contains('Study Cypress - EDIT').should('not.be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `.delete-task-btn`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `.delete-task-btn`, but never found it.\n    at Context.eval (https://habitica.com/__cypress/tests?p=cypress\\integration\\habiticaDailyFlow.spec.js:132:8)",
+                "diff": null
+              },
+              "uuid": "78854d1e-e1a5-4cd9-9190-b8fb14efc40c",
+              "parentUUID": "c5985d9b-03df-42d7-b302-e2007ded0523",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "b67cfa7b-88cd-4e47-b594-06ac62f9cef9",
+            "170a0422-f8e3-4b95-977e-35b977623108",
+            "7a48f43e-11b5-4de7-bc1e-0f18fd707228",
+            "78854d1e-e1a5-4cd9-9190-b8fb14efc40c"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 30300,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

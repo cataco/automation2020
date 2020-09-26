@@ -1,0 +1,171 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 2,
+    "pending": 0,
+    "failures": 2,
+    "start": "2020-09-18T22:25:40.430Z",
+    "end": "2020-09-18T22:26:08.594Z",
+    "duration": 28164,
+    "testsRegistered": 4,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "bf75dd52-f66e-4efa-9e6c-eb1fd1d345cd",
+      "title": "",
+      "fullFile": "cypress\\integration\\habiticaDailyFlow.spec.js",
+      "file": "cypress\\integration\\habiticaDailyFlow.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ead77bc5-d87d-419a-b06b-a69e7ebdecd1",
+          "title": "Habitica Tests - Daily CRUD",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "creates a new daily task",
+              "fullTitle": "Habitica Tests - Daily CRUD creates a new daily task",
+              "timedOut": null,
+              "duration": 14275,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "login();\ncy.get('#create-task-btn').click();\ncy.get('.create-task-btn .icon-daily').click();\ncy.get('.input-title').type('Study Cypress');\ncy.get('.btn-primary.btn-footer').click();\ncy.contains('Study Cypress').should('be.visible');",
+              "err": {},
+              "uuid": "c0a133b9-1477-410c-8095-4cffd3ae6037",
+              "parentUUID": "ead77bc5-d87d-419a-b06b-a69e7ebdecd1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "reads a new daily task",
+              "fullTitle": "Habitica Tests - Daily CRUD reads a new daily task",
+              "timedOut": null,
+              "duration": 6040,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.wait(1000).contains('Study Cypress').click();\ncy.get('.input-title').should('have.value', 'Study Cypress');\ncy.get('.difficulty-item.isButton').contains('Easy').should('be.visible');\ncy.get('button span.label').contains('Weekly').should('be.visible');\ncy.get('.input-group-outer input').should('have.value', '1');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find content: 'Easy' within the element: <div.difficulty-item.isButton> but never did.",
+                "estack": "AssertionError: Timed out retrying: Expected to find content: 'Easy' within the element: <div.difficulty-item.isButton> but never did.\n    at Context.eval (https://habitica.com/__cypress/tests?p=cypress\\integration\\habiticaDailyFlow.spec.js:115:58)",
+                "diff": null
+              },
+              "uuid": "a35b6be8-c054-4538-be70-7a68e9d6c947",
+              "parentUUID": "ead77bc5-d87d-419a-b06b-a69e7ebdecd1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "edits a new daily task",
+              "fullTitle": "Habitica Tests - Daily CRUD edits a new daily task",
+              "timedOut": null,
+              "duration": 5174,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.input-title').clear().type('Study Cypress - EDIT');\ncy.get('.input-group-outer input').clear().type('2');\ncy.get('button span.label').contains('Weekly').click();\ncy.get('span.label').contains('Daily').click();\ncy.get('.m-auto').click();\ncy.contains('Study Cypress - EDIT').click();\ncy.get('.input-title').should('have.value', 'Study Cypress - EDIT');\ncy.get('.difficulty-item.isButton').should('be.visible');\ncy.get('button span.label').contains('Daily').should('be.visible');\ncy.get('.input-group-outer input').should('have.value', '2');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find content: 'Weekly' within the element: [ <span.label>, 1 more... ] but never did.",
+                "estack": "AssertionError: Timed out retrying: Expected to find content: 'Weekly' within the element: [ <span.label>, 1 more... ] but never did.\n    at Context.eval (https://habitica.com/__cypress/tests?p=cypress\\integration\\habiticaDailyFlow.spec.js:122:33)",
+                "diff": null
+              },
+              "uuid": "6ccb150e-1adf-46a0-89a5-b589e3c525fd",
+              "parentUUID": "ead77bc5-d87d-419a-b06b-a69e7ebdecd1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deletes a daily task",
+              "fullTitle": "Habitica Tests - Daily CRUD deletes a daily task",
+              "timedOut": null,
+              "duration": 172,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.delete-task-btn').click();\ncy.on('window:confirm', function () {\n  return true;\n}).contains('Study Cypress - EDIT').should('not.be.visible');",
+              "err": {},
+              "uuid": "216273f6-af6f-450a-b69a-e3a8a45fe1b3",
+              "parentUUID": "ead77bc5-d87d-419a-b06b-a69e7ebdecd1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c0a133b9-1477-410c-8095-4cffd3ae6037",
+            "216273f6-af6f-450a-b69a-e3a8a45fe1b3"
+          ],
+          "failures": [
+            "a35b6be8-c054-4538-be70-7a68e9d6c947",
+            "6ccb150e-1adf-46a0-89a5-b589e3c525fd"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 25661,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

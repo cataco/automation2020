@@ -25,14 +25,10 @@
     </mat-expansion-panel-header>
     <mat-grid-list cols="3" rowHeight="2:1">
       <mat-form-field>
-        <mat-label>Url de la aplicacion a probar</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <mat-form-field>
         <mat-label>Numero de eventos</mat-label>
-        <input matInput>
+        <input matInput  [(ngModel)]="eventos">
       </mat-form-field>
-      <button mat-raised-button color="primary">Ejecutar monkey</button>
+      <button mat-raised-button color="primary" onclick="crearMonkey()">Ejecutar monkey</button>
     </mat-grid-list>
 
   </mat-expansion-panel>
