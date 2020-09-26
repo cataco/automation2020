@@ -1,9 +1,10 @@
 {
-    "reporter": "mochawesome",
-    "reporterOptions": {
-      "reportDir": "cypress/results",
-      "overwrite": false,
-      "html": true,
-      "json": true
-    }
-  }
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/results",
+    "overwrite": false,
+    "html": true,
+    "json": true
+  },
+  "testFiles": "**/*.{feature,features}"
+}

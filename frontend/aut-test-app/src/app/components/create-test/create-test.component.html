@@ -1,0 +1,44 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Subir script
+      </mat-panel-title>
+      <mat-panel-description>
+        Premite subir un scrpit .js para ejecutar cualquier tipo de prueba.
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <input type="file">
+    <button mat-raised-button color="primary">Ejecutar script</button>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Monkey testing
+      </mat-panel-title>
+      <mat-panel-description>
+        Diligencie el formulario con los eventos que desee que se ejecuten en su aplicacion
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-grid-list cols="3" rowHeight="2:1">
+      <mat-form-field>
+        <mat-label>Url de la aplicacion a probar</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Numero de eventos</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Ejecutar monkey</button>
+    </mat-grid-list>
+
+  </mat-expansion-panel>
+
+
+</mat-accordion>
+
+
+

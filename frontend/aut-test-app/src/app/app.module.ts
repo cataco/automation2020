@@ -8,19 +8,41 @@ import {MatIconModule} from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import { ResultComponent } from './components/result-component/result.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreateTestComponent } from './components/create-test/create-test.component';
+import { BannerComponent } from './components/banner/banner.component';
+import {RouterModule} from "@angular/router";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatButtonModule} from "@angular/material/button";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatCardModule} from "@angular/material/card";
+import {AppRoutingModule} from "./app-routing.module";
+import {MatInputModule} from "@angular/material/input";
 
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
-    ResultComponent
+    ResultComponent,
+    CreateTestComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
+    MatButtonModule,
     MatExpansionModule,
     HttpClientModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
