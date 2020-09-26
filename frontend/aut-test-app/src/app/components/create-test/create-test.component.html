@@ -1,3 +1,30 @@
+<mat-card>
+  <h3>Informacion básica</h3>
+  <form [formGroup]="registerForm">
+    <mat-form-field>
+      <mat-label>App name</mat-label>
+      <input matInput formControlName="appName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>App Url</mat-label>
+      <input matInput formControlName="appUrl">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>App version</mat-label>
+      <input matInput formControlName="appVersion">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Test Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Strategy</mat-label>
+        <input matInput formControlName="strategy">
+      </mat-form-field>
+  </form>
+
+</mat-card>
+
 <mat-accordion>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -9,9 +36,16 @@
 
       </mat-panel-description>
     </mat-expansion-panel-header>
+    <form [formGroup]="registerForm">
+      <div class="progress form-group" *ngIf="progress > 0">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+        </div>
+      </div>
 
-    <input type="file">
-    <button mat-raised-button color="primary">Ejecutar script</button>
+      <br>
+      <input type="file" (change)="subirScript($event)" placeholder="testScript">
+      <button mat-raised-button color="primary" (click)="uploadFile()">Ejecutar script</button>
+    </form>
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
@@ -34,9 +68,26 @@
       </mat-form-field>
       <button mat-raised-button color="primary">Ejecutar monkey</button>
     </mat-grid-list>
-
   </mat-expansion-panel>
 
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        BDD testing
+      </mat-panel-title>
+      <mat-panel-description>
+        Suba los scripts de pruebas y los scripts de pasos
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-grid-list cols="3" rowHeight="2:1">
+      <label for="files" class="btn">Features</label>
+      <input type="file" id="files" (change)="subirFeatures($event)" placeholder="testScript">
+      <label for="files2" class="btn">Step Script</label>
+      <input type="file" id="files2" (change)="subirSteps($event)" placeholder="testScript">
+      <button mat-raised-button color="primary" (click)="uploadFileBDD()">Ejecutar BDD</button>
+    </mat-grid-list>
+  </mat-expansion-panel>
 
 </mat-accordion>
 
