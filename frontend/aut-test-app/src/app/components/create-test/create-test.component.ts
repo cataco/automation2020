@@ -33,6 +33,8 @@ export class CreateTestComponent implements OnInit {
       name: new FormControl('',),
       strategy: new FormControl('1'),
       testScript: new FormControl(''),
+      url1: new FormControl(''),
+      url2: new FormControl(''),
       stepsScript: new FormControl(''),
       features: new FormControl(''),
     });

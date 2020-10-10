@@ -1,95 +1,204 @@
-<mat-card>
-  <h3>Informacion básica</h3>
-  <form [formGroup]="registerForm">
-    <mat-form-field>
-      <mat-label>App name</mat-label>
-      <input matInput formControlName="appName">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>App Url</mat-label>
-      <input matInput formControlName="appUrl">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>App version</mat-label>
-      <input matInput formControlName="appVersion">
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Test Name</mat-label>
-        <input matInput formControlName="name">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Strategy</mat-label>
-        <input matInput formControlName="strategy">
-      </mat-form-field>
-  </form>
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Web">
+    <br>
+    <mat-card>
+      <h3>Informacion básica</h3>
+      <form [formGroup]="registerForm">
+        <mat-form-field>
+          <mat-label>App name</mat-label>
+          <input matInput formControlName="appName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>App Url</mat-label>
+          <input matInput formControlName="appUrl">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>App version</mat-label>
+          <input matInput formControlName="appVersion">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Test Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Strategy</mat-label>
+          <input matInput formControlName="strategy">
+        </mat-form-field>
+      </form>
 
-</mat-card>
+    </mat-card>
+    <br>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            E2E testing
+          </mat-panel-title>
+          <mat-panel-description>
+            Premite subir un scrpit .js para ejecutar cualquier tipo de prueba.
 
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Subir script
-      </mat-panel-title>
-      <mat-panel-description>
-        Premite subir un scrpit .js para ejecutar cualquier tipo de prueba.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="registerForm">
+          <div class="progress form-group" *ngIf="progress > 0">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+            </div>
+          </div>
 
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <form [formGroup]="registerForm">
-      <div class="progress form-group" *ngIf="progress > 0">
-        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
-        </div>
-      </div>
+          <br>
+          <input type="file" (change)="subirScript($event)" placeholder="testScript">
+          <button mat-raised-button color="primary" (click)="uploadFile()">Ejecutar script</button>
+        </form>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Monkey testing
+          </mat-panel-title>
+          <mat-panel-description>
+            Diligencie el formulario con los eventos que desee que se ejecuten en su aplicacion
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-grid-list cols="3" rowHeight="2:1">
+          <mat-form-field>
+            <mat-label>Url de la aplicacion a probar</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Numero de eventos</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <button mat-raised-button color="primary">Ejecutar monkey</button>
+        </mat-grid-list>
+      </mat-expansion-panel>
 
-      <br>
-      <input type="file" (change)="subirScript($event)" placeholder="testScript">
-      <button mat-raised-button color="primary" (click)="uploadFile()">Ejecutar script</button>
-    </form>
-  </mat-expansion-panel>
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Monkey testing
-      </mat-panel-title>
-      <mat-panel-description>
-        Diligencie el formulario con los eventos que desee que se ejecuten en su aplicacion
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-grid-list cols="3" rowHeight="2:1">
-      <mat-form-field>
-        <mat-label>Url de la aplicacion a probar</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Numero de eventos</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <button mat-raised-button color="primary">Ejecutar monkey</button>
-    </mat-grid-list>
-  </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            BDD testing
+          </mat-panel-title>
+          <mat-panel-description>
+            Suba los scripts de pruebas y los scripts de pasos
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-grid-list cols="3" rowHeight="2:1">
+          <label for="files" class="btn">Features</label>
+          <input type="file" id="files" (change)="subirFeatures($event)" placeholder="testScript">
+          <label for="files2" class="btn">Step Script</label>
+          <input type="file" id="files2" (change)="subirSteps($event)" placeholder="testScript">
+          <button mat-raised-button color="primary" (click)="uploadFileBDD()">Ejecutar BDD</button>
+        </mat-grid-list>
+      </mat-expansion-panel>
 
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        BDD testing
-      </mat-panel-title>
-      <mat-panel-description>
-        Suba los scripts de pruebas y los scripts de pasos
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-grid-list cols="3" rowHeight="2:1">
-      <label for="files" class="btn">Features</label>
-      <input type="file" id="files" (change)="subirFeatures($event)" placeholder="testScript">
-      <label for="files2" class="btn">Step Script</label>
-      <input type="file" id="files2" (change)="subirSteps($event)" placeholder="testScript">
-      <button mat-raised-button color="primary" (click)="uploadFileBDD()">Ejecutar BDD</button>
-    </mat-grid-list>
-  </mat-expansion-panel>
 
-</mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            VRT testing
+          </mat-panel-title>
+          <mat-panel-description>
+            Suba la urls de las dos versiones con las que quiere hacer la prueba
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="registerForm">
+          <mat-grid-list cols="3" rowHeight="2:1">
 
+          <mat-form-field>
+            <mat-label>URL version 1</mat-label>
+            <input matInput formControlName="url1">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>URL version 2</mat-label>
+            <input matInput formControlName="url2">
+          </mat-form-field>
+             <label for="filses" class="btn">Script</label>
+            <input type="file" id="filses" (change)="subirFeatures($event)" placeholder="testScriptVrt" style="padding-left: 10px">
+            <button mat-raised-button color="primary" (click)="uploadFileBDD()">Ejecutar BDD</button>
+          </mat-grid-list>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <br>
+  </mat-tab>
+  <mat-tab label="Mobile">
+    <br>
+    <mat-card>
+      <h3>Informacion básica</h3>
+      <form [formGroup]="registerForm">
+        <mat-form-field>
+          <mat-label>App name</mat-label>
+          <input matInput formControlName="appName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>App Url</mat-label>
+          <input matInput formControlName="appUrl">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>App version</mat-label>
+          <input matInput formControlName="appVersion">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Test Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Strategy</mat-label>
+          <input matInput formControlName="strategy">
+        </mat-form-field>
+      </form>
+
+    </mat-card>
+    <br>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            E2E testing
+          </mat-panel-title>
+          <mat-panel-description>
+            Premite subir un scrpit .js para ejecutar cualquier tipo de prueba.
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="registerForm">
+          <div class="progress form-group" *ngIf="progress > 0">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+            </div>
+          </div>
+
+          <br>
+          <input type="file" (change)="subirScript($event)" placeholder="testScript">
+          <button mat-raised-button color="primary" (click)="uploadFile()">Ejecutar script</button>
+        </form>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Monkey testing
+          </mat-panel-title>
+          <mat-panel-description>
+            Diligencie el formulario con los eventos que desee que se ejecuten en su aplicacion
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-grid-list cols="3" rowHeight="2:1">
+          <mat-form-field>
+            <mat-label>Url de la aplicacion a probar</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Numero de eventos</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <button mat-raised-button color="primary">Ejecutar monkey</button>
+        </mat-grid-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <br>
+  </mat-tab>
+</mat-tab-group>
 
 
