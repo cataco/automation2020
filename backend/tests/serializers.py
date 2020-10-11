@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from tests.models import Reports, TestStrategy, End2End, RandomTest, BDDTest
+from tests.models import Reports, TestStrategy, End2End, RandomTest, BDDTest, \
+    MobileTest, VRTTest, Framework, Browser, AndroidVersion
 
 
 class ReportsSerializer(serializers.ModelSerializer):
@@ -27,4 +28,29 @@ class RandomTestSerializer(serializers.ModelSerializer):
 class BDDTestSerializer(serializers.ModelSerializer):
     class Meta:
         model = BDDTest
+        fields = '__all__'
+
+class MobileTestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MobileTest
+        fields = '__all__'
+
+class VRTSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VRTTest
+        fields = '__all__'
+
+class FrameworkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Framework
+        fields = '__all__'
+
+class BrowserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Browser
+        fields = '__all__'
+
+class AndroidVersionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AndroidVersion
         fields = '__all__'

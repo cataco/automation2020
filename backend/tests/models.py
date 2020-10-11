@@ -21,9 +21,18 @@ class Browser(models.Model):
         return self.name
 
 
+class AndroidVersion(models.Model):
+    versionName = models.CharField(max_length=20)
+    versionNumber = models.CharField(max_length=10)
+
+    def __str__(self):
+        return str(self.versionName) + ' -- ' + str(self.versionNumber)
 # -------- TEST STRATEGY --------
+
+
 class TestStrategy(models.Model):
-    createdAt = models.DateTimeField(auto_now_add=True, verbose_name='creation_date')
+    createdAt = models.DateTimeField(
+        auto_now_add=True, verbose_name='creation_date')
     name = models.CharField(max_length=80)
 
     def __str__(self):
@@ -31,14 +40,20 @@ class TestStrategy(models.Model):
 
 
 class TestRequest(models.Model):
-    createdAt = models.DateTimeField(auto_now_add=True, verbose_name='creation_date')
+    createdAt = models.DateTimeField(
+        auto_now_add=True, verbose_name='creation_date')
     name = models.CharField(max_length=80)
-    browser = models.ForeignKey(Browser, on_delete=models.SET_NULL, verbose_name='testing_browser', null=True)
     appName = models.CharField(max_length=100)
-    appUrl = models.CharField(max_length=255)
     appVersion = models.CharField(max_length=10)
     strategy = models.ForeignKey(TestStrategy, on_delete=models.CASCADE)
-    framework = models.ForeignKey(Framework, on_delete=models.SET_NULL, null=True)
+
+
+class WebTest(TestRequest):
+    browser = models.ForeignKey(
+        Browser, on_delete=models.SET_NULL, verbose_name='testing_browser', null=True)
+    appUrl = models.CharField(max_length=255)
+    framework = models.ForeignKey(
+        Framework, on_delete=models.SET_NULL, null=True)
     headless = models.BooleanField(default=True)
 
     def __str__(self):
@@ -57,8 +72,9 @@ def set_path(instance, filename):
     return '{}/{}'.format(instance.framework.name.lower(), filename)
 
 
-class End2End(TestRequest):
-    testScript = models.FileField(upload_to=set_path, validators=[FileExtensionValidator(allowed_extensions=['js'])])
+class End2End(WebTest):
+    testScript = models.FileField(upload_to=set_path, validators=[
+                                  FileExtensionValidator(allowed_extensions=['js', 'zip'])])
 
 
 @receiver(post_save, sender=End2End)
@@ -69,9 +85,8 @@ def run_test_e2e_task(sender, instance, **kwargs):
 
 # -------- RANDOM TEST --------
 
-class RandomTest(TestRequest):    
+class RandomTest(WebTest):
     eventsNumber = models.IntegerField()
-
 
 
 @receiver(post_save, sender=RandomTest)
@@ -87,18 +102,47 @@ def set_js_bdd_path(instance, filename):
 
 
 def set_feature_bdd_path(instance, filename):
-    return '{}/{}'.format(instance.framework.name.lower(),filename)
+    return '{}/{}'.format(instance.framework.name.lower(), filename)
 
 
-class BDDTest(TestRequest):    
+class BDDTest(WebTest):
     features = models.FileField(upload_to=set_feature_bdd_path,
                                 validators=[FileExtensionValidator(allowed_extensions=['feature'])])
     stepsScript = models.FileField(upload_to=set_js_bdd_path,
-                                   validators=[FileExtensionValidator(allowed_extensions=['js'])])
+                                   validators=[FileExtensionValidator(allowed_extensions=['js', 'zip'])])
 
 
 @receiver(post_save, sender=BDDTest)
 def run_test_bdd_task(sender, instance, **kwargs):
     from tests.tasks import run_bdd_test
-    run_bdd_test.delay(instance.features.name, instance.stepsScript.name, instance.pk)
+    run_bdd_test.delay(instance.features.name.lower(),
+                       instance.stepsScript.name, instance.pk)
 
+# ------------- VRT ------------------
+def set_vrt_path(instance, filename):
+    return 'vrt/{}/{}'.format(instance.framework.name.lower(), filename)
+class VRTTest(WebTest):
+    url1 = models.URLField(max_length=250)
+    url2 = models.URLField(max_length=250)
+    sripts = models.FileField(upload_to='?', validators=[FileExtensionValidator(allowed_extensions=['js', 'zip'])])
+
+
+# --------------- Mobile ---------------------
+def seth_apk_path(instance, filename):
+    pathName = instance.name.lower().replace(' ', '_')
+    return 'mobile/{}/{}'.format(pathName, filename)
+
+def seth_scripts_path(instance, filename):
+    pathName = instance.name.lower().replace(' ', '_')
+    return 'mobile/{}/{}'.format(pathName, filename)
+
+class MobileTest(TestRequest):
+    androidVersion = models.ForeignKey(
+        AndroidVersion, on_delete=models.DO_NOTHING)
+    appApk = models.FileField(upload_to=seth_apk_path, validators=[FileExtensionValidator(
+        allowed_extensions=['apk'])])  # -> Confirm upload dir
+    scripts = models.FileField(upload_to=seth_scripts_path, validators=[FileExtensionValidator(
+        allowed_extensions=['zip', 'py'])])  # -> Confirm upload dir
+    
+    def __str__(self):
+        return str(self.name) + ' - ' + str(self.appName) + ' -- ' + str(self.createdAt)
