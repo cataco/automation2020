@@ -1,9 +1,9 @@
 // @ts-ignore
 import {Component, OnInit, ViewChild} from '@angular/core';
-import Swal from "sweetalert2";
-import {PruebaService} from "../../prueba.service";
-import {HttpEvent, HttpEventType} from "@angular/common/http";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import Swal from 'sweetalert2';
+import {PruebaService} from '../../prueba.service';
+import {HttpEvent, HttpEventType} from '@angular/common/http';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 // @ts-ignore
 @Component({
