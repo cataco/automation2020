@@ -50,8 +50,7 @@
           <button mat-raised-button color="primary" (click)="uploadFile()">Ejecutar script</button>
         </form>
       </mat-expansion-panel>
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Monkey testing
@@ -60,21 +59,18 @@
             Diligencie el formulario con los eventos que desee que se ejecuten en su aplicacion
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-grid-list cols="3" rowHeight="2:1">
-          <mat-form-field>
-            <mat-label>Url de la aplicacion a probar</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Numero de eventos</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <button mat-raised-button color="primary">Ejecutar monkey</button>
-        </mat-grid-list>
+        <form [formGroup]="registerForm">
+          <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-form-field>
+              <mat-label>Numero de eventos</mat-label>
+              <input matInput formControlName="events">
+            </mat-form-field>
+            <button mat-raised-button (click)="saveMonkeyTest()" color="primary">Ejecutar monkey</button>
+          </mat-grid-list>
+        </form>
       </mat-expansion-panel>
 
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             BDD testing
@@ -93,8 +89,7 @@
       </mat-expansion-panel>
 
 
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             VRT testing
@@ -106,16 +101,17 @@
         <form [formGroup]="registerForm">
           <mat-grid-list cols="3" rowHeight="2:1">
 
-          <mat-form-field>
-            <mat-label>URL version 1</mat-label>
-            <input matInput formControlName="url1">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>URL version 2</mat-label>
-            <input matInput formControlName="url2">
-          </mat-form-field>
-             <label for="filses" class="btn">Script</label>
-            <input type="file" id="filses" (change)="subirFeatures($event)" placeholder="testScriptVrt" style="padding-left: 10px">
+            <mat-form-field>
+              <mat-label>URL version 1</mat-label>
+              <input matInput formControlName="url1">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>URL version 2</mat-label>
+              <input matInput formControlName="url2">
+            </mat-form-field>
+            <label for="filses" class="btn">Script</label>
+            <input type="file" id="filses" (change)="subirFeatures($event)" placeholder="testScriptVrt"
+              style="padding-left: 10px">
             <button mat-raised-button color="primary" (click)="uploadFileBDD()">Ejecutar BDD</button>
           </mat-grid-list>
         </form>
@@ -174,8 +170,7 @@
           <button mat-raised-button color="primary" (click)="uploadFile()">Ejecutar script</button>
         </form>
       </mat-expansion-panel>
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Monkey testing
@@ -184,21 +179,17 @@
             Diligencie el formulario con los eventos que desee que se ejecuten en su aplicacion
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-grid-list cols="3" rowHeight="2:1">
-          <mat-form-field>
-            <mat-label>Url de la aplicacion a probar</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Numero de eventos</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <button mat-raised-button color="primary">Ejecutar monkey</button>
-        </mat-grid-list>
+        <form [formGroup]="registerForm">
+          <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-form-field>
+              <mat-label>Numero de eventos</mat-label>
+              <input matInput formControlName="events">
+            </mat-form-field>
+            <button mat-raised-button color="primary">Ejecutar monkey</button>
+          </mat-grid-list>
+        </form>
       </mat-expansion-panel>
     </mat-accordion>
     <br>
   </mat-tab>
 </mat-tab-group>
-
-

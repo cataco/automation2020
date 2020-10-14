@@ -13,7 +13,7 @@ export class HttpService {
   constructor(protected http: HttpClient) { }
 
   //baseUrl = environment.urlBack + '/';
-  baseUrl = 'http://localhost:3000/';
+  baseUrl = 'http://localhost:3000/api/test/';
 
   postJSON(url, data): Observable<HttpResponse<string>> {
     const httpHeaders = new HttpHeaders({

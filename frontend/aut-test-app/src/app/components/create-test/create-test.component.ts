@@ -1,7 +1,7 @@
 // @ts-ignore
 import {Component, OnInit, ViewChild} from '@angular/core';
 import Swal from 'sweetalert2';
-import {PruebaService} from '../../prueba.service';
+import {PruebaService} from '../../services/prueba-service/prueba.service';
 import {HttpEvent, HttpEventType} from '@angular/common/http';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -30,11 +30,12 @@ export class CreateTestComponent implements OnInit {
       appName: new FormControl('', [Validators.required]),
       appUrl: new FormControl('', [Validators.required]),
       appVersion: new FormControl('', [Validators.required]),
-      name: new FormControl('',),
+      name: new FormControl(''),
       strategy: new FormControl('1'),
       testScript: new FormControl(''),
       url1: new FormControl(''),
       url2: new FormControl(''),
+      events: new FormControl(''),
       stepsScript: new FormControl(''),
       features: new FormControl(''),
     });
@@ -116,5 +117,13 @@ export class CreateTestComponent implements OnInit {
       console.log('logo_asamblea', event.target.files[0])
       this.registerForm.get('stepsScript').setValue(file);
     }
+  }
+
+  saveMonkeyTest() {
+    this.service.saveMonkeyTest(this.registerForm).subscribe(response => {
+      Swal.fire('Success!', 'Prueba ejecutada satisfactoriamente', 'success');
+    }, error => {
+      Swal.fire('Oops...', 'Parece que hubo un problema con el test, intenta de nuevo', 'error');
+    });
   }
 }
