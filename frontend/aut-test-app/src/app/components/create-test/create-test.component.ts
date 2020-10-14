@@ -2,6 +2,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import Swal from 'sweetalert2';
 import {PruebaService} from '../../services/prueba-service/prueba.service';
+import {UtilsService} from '../../services/util-service/utils.service';
 import {HttpEvent, HttpEventType} from '@angular/common/http';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -13,15 +14,33 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class CreateTestComponent implements OnInit {
   files: any = [];
+  browsers: [];
+  strategies: [];
+  frameworks: [];
   panelOpenState = false;
   progress = 0;
   public registerForm: FormGroup;
 
-  constructor(private service: PruebaService) {
+  constructor(private service: PruebaService, private utilService: UtilsService) {
 
   }
 
   ngOnInit(): void {
+    this.utilService.getBrowsers().subscribe(response => {
+      console.log('browsers: ', response);
+      this.browsers = response;
+    });
+
+    this.utilService.getFrameworks().subscribe(response => {
+      console.log('frameworks: ', response);
+      this.frameworks = response;
+    });
+
+    this.utilService.getStrategies().subscribe(response => {
+      console.log('strategies: ', response);
+      this.strategies = response;
+    });
+
     this.createForm();
   }
 
@@ -31,7 +50,9 @@ export class CreateTestComponent implements OnInit {
       appUrl: new FormControl('', [Validators.required]),
       appVersion: new FormControl('', [Validators.required]),
       name: new FormControl(''),
-      strategy: new FormControl('1'),
+      strategy: new FormControl(''),
+      browser: new FormControl(''),
+      framework: new FormControl(''),
       testScript: new FormControl(''),
       url1: new FormControl(''),
       url2: new FormControl(''),

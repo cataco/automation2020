@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,7 @@ export class HttpService {
 
   constructor(protected http: HttpClient) { }
 
-  //baseUrl = environment.urlBack + '/';
-  baseUrl = 'http://localhost:3000/api/test/';
+  baseUrl = environment.urlBack;
 
   postJSON(url, data): Observable<HttpResponse<string>> {
     const httpHeaders = new HttpHeaders({
