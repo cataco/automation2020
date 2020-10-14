@@ -20,8 +20,10 @@ export class PruebaService {
     formData.append('name', form.get('name').value);
     formData.append('strategy', form.get('strategy').value);
     formData.append('testScript', form.get('testScript').value);
+    formData.append('framework', '1');
+    formData.append('browser', '1');
     //let headers = new HttpHeaders({'Authorization': 'Token ' + this.token});
-    return this.http.post( 'http://ec2-18-208-248-251.compute-1.amazonaws.com:8000/api/test/end2end-tests', formData, {
+    return this.http.post( 'http://localhost:8000/api/test/end2end-tests', formData, {
       //'headers': headers, reportProgress: true,
       observe: 'events'
     });
@@ -38,8 +40,10 @@ export class PruebaService {
     formData.append('strategy', form.get('strategy').value);
     formData.append('features', form.get('features').value);
     formData.append('stepsScript', form.get('stepsScript').value);
+    formData.append('framework', '1');
+    formData.append('browser', '1');
     //let headers = new HttpHeaders({'Authorization': 'Token ' + this.token});
-    return this.http.post( 'http://ec2-18-208-248-251.compute-1.amazonaws.com:8000/api/test/bdd-tests', formData, {
+    return this.http.post( 'http://localhost:8000/api/test/bdd-tests', formData, {
       //'headers': headers, reportProgress: true,
       observe: 'events'
     });

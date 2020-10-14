@@ -34,6 +34,8 @@ export class CreateTestComponent implements OnInit {
       name: new FormControl(''),
       strategy: new FormControl('1'),
       testScript: new FormControl(''),
+      url1: new FormControl(''),
+      url2: new FormControl(''),
       stepsScript: new FormControl(''),
       features: new FormControl(''),
       eventos: new FormControl('')
@@ -58,7 +60,11 @@ export class CreateTestComponent implements OnInit {
       }, error => {
         console.log('error creando ramdon-test', error);
       }
-    );
+    }, error => {
+      console.log('Error registrandose-> ', error.error);
+      Swal.fire('Oops...', 'Parece que hubo un problema con el archivo, revisa su extension e intenta de nuevo', 'error');
+      this.progress = 0;
+    });
   }
 
     uploadFile() {
@@ -89,31 +95,31 @@ export class CreateTestComponent implements OnInit {
     }
 
     uploadFileBDD() {
-      //console.log('files lengt', this.files.length);
-      this.service.saveFilesBDD(this.registerForm).subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Sent:
-            console.log('Request has been made!');
-            break;
-          case HttpEventType.ResponseHeader:
-            console.log('Response header has been received!');
-            break;
-          case HttpEventType.UploadProgress:
-            this.progress = Math.round(event.loaded / event.total * 100);
-            console.log(`Uploaded! ${this.progress}%`);
-            break;
-          case HttpEventType.Response:
-            console.log('Video subido satisfactoriamente!', event.body);
-            Swal.fire('Success!', 'Prueba ejecutada satisfactoriamente', 'success');
-            this.progress = 0;
-            this.files.splice(0, 1)
-        }
-      }, error => {
-        console.log('Error registrandose-> ', error);
-        Swal.fire('Oops...', 'Parece que hubo un problema con el archivo, revisa su extension e intenta de nuevo', 'error');
-        this.progress = 0;
-      });
-    }
+    //console.log('files lengt', this.files.length);
+    this.service.saveFilesBDD(this.registerForm).subscribe((event: HttpEvent<any>) => {
+      switch (event.type) {
+        case HttpEventType.Sent:
+          console.log('Request has been made!');
+          break;
+        case HttpEventType.ResponseHeader:
+          console.log('Response header has been received!');
+          break;
+        case HttpEventType.UploadProgress:
+          this.progress = Math.round(event.loaded / event.total * 100);
+          console.log(`Uploaded! ${this.progress}%`);
+          break;
+        case HttpEventType.Response:
+          console.log('Video subido satisfactoriamente!', event.body);
+          Swal.fire('Success!', 'Prueba ejecutada satisfactoriamente', 'success');
+          this.progress = 0;
+          this.files.splice(0, 1)
+      }
+    }, error => {
+      console.log('Error registrandose-> ', error.error);
+      Swal.fire('Oops...', 'Parece que hubo un problema con el archivo, revisa su extension e intenta de nuevo', 'error');
+      this.progress = 0;
+    });
+  }
 
     subirScript(event) {
       if (event.target.files.length > 0) {

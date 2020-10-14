@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Framework, RandomTest, TestStrategy, End2End, Browser, Reports, BDDTest
+from .models import Framework, RandomTest, TestStrategy, End2End, Browser, Reports, BDDTest, \
+    AndroidVersion, MobileTest
+
 # Register your models here.
 
 class FrameworkAdmin(admin.ModelAdmin):
@@ -67,5 +69,16 @@ class BddTestAdmin(admin.ModelAdmin):
 
 admin.site.register(BDDTest, BddTestAdmin)
 
-models = [Browser]
+class MobileTestAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'appApk',
+        'scripts',
+        'androidVersion',
+        'createdAt'
+    )
+
+admin.site.register(MobileTest, MobileTestAdmin)
+
+models = [Browser, AndroidVersion]
 admin.site.register(models)

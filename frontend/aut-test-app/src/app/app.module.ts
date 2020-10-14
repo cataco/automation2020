@@ -19,6 +19,7 @@ import {MatCardModule} from "@angular/material/card";
 import {AppRoutingModule} from "./app-routing.module";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 // @ts-ignore
@@ -44,6 +45,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatInputModule,
     MatGridListModule,
     ReactiveFormsModule,
+    MatTabsModule,
 
   ],
   providers: [],
