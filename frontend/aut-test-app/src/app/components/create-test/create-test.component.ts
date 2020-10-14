@@ -42,7 +42,16 @@ export class CreateTestComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   crearMonkey() {
-    const data = { eventos: this.registerForm.get('eventos'), url:  this.registerForm.get('url')};
+    const data = {appName: this.registerForm.get('appName'),
+      appUrl: this.registerForm.get('appUrl'),
+      appVersion: this.registerForm.get('appVersion'),
+      name: this.registerForm.get('name'),
+      strategy: this.registerForm.get('strategy'),
+      eventos: this.registerForm.get('eventos'),
+      testScript:  this.registerForm.get('testScript'),
+      framework :   '1',
+      browser :   '1',
+    };
     this.createService.createMonkeyTest(data).subscribe(
       response => {
         console.log('response=>', response);

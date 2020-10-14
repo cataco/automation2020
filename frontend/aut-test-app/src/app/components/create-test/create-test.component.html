@@ -48,22 +48,21 @@
     </form>
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Monkey testing
+      </mat-panel-title>
+      <mat-panel-description>
+        Diligencie el formulario con los eventos que desee que se ejecuten en su aplicacion
+      </mat-panel-description>
+    </mat-expansion-panel-header>
     <form [formGroup]="registerForm">
-      <mat-expansion-panel-header>
-
-        <mat-panel-title>
-          Monkey testing
-        </mat-panel-title>
-        <mat-panel-description>
-          Diligencie el formulario con los eventos que desee que se ejecuten en su aplicacion
-        </mat-panel-description>
-      </mat-expansion-panel-header>
       <mat-grid-list cols="3" rowHeight="2:1">
         <mat-form-field>
           <mat-label>Numero de eventos</mat-label>
           <input matInput formControlName="eventos">
         </mat-form-field>
-        <button mat-raised-button color="primary" onclick="crearMonkey()">Ejecutar monkey</button>
+        <button mat-raised-button color="primary" (click)="crearMonkey()">Ejecutar monkey</button>
       </mat-grid-list>
     </form>
   </mat-expansion-panel>

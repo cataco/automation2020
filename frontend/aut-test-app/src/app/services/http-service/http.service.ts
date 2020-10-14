@@ -13,8 +13,8 @@ export class HttpService {
   constructor(protected http: HttpClient) { }
 
   // baseUrl = environment.urlBack + '/';
-  // baseUrl = 'http://localhost:3000/';
-  baseUrl = 'http://ec2-18-208-248-251.compute-1.amazonaws.com:8000';
+  baseUrl = 'http://localhost:3000/';
+  //baseUrl = 'http://ec2-18-208-248-251.compute-1.amazonaws.com:8000';
 
   postJSON(url, data): Observable<HttpResponse<string>> {
     const httpHeaders = new HttpHeaders({
