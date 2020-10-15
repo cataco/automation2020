@@ -146,3 +146,13 @@ class MobileTest(TestRequest):
     
     def __str__(self):
         return str(self.name) + ' - ' + str(self.appName) + ' -- ' + str(self.createdAt)
+
+
+class MobileRandomTest(TestRequest):
+    androidVersion = models.ForeignKey(
+        AndroidVersion, on_delete=models.DO_NOTHING)
+    appApk = models.FileField(upload_to=seth_apk_path, validators=[FileExtensionValidator(
+        allowed_extensions=['apk'])])
+
+    def __str__(self):
+        return str(self.name) + ' - ' + str(self.appName) + ' -- ' + str(self.createdAt)

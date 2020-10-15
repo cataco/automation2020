@@ -3,7 +3,7 @@ from django.urls import path
 from rest_framework import routers
 
 from tests.views import ReportsViewSet, TestStrategyView, End2EndView, RandomTestView, BDDTestView,\
-    MobileTestView, VRTTestView, FrameworkView, BrowserView, AndroidVersionView
+    MobileTestView, VRTTestView, FrameworkView, BrowserView, AndroidVersionView, MobileRandomTestView
 
 
 urlpatterns = [
@@ -13,6 +13,7 @@ urlpatterns = [
     path('random-tests', RandomTestView.as_view(), name='random-tests'),    
     path('bdd-tests', BDDTestView.as_view(), name='bdd-tests'),
     path('mobile-tests', MobileTestView.as_view(), name='mobile-tests'),
+    path('mobile-random-tests', MobileRandomTestView.as_view(), name='mobile-random-tests'),
     path('vrt-tests', VRTTestView.as_view(), name='vrt-tests'),
     path('frameworks', FrameworkView.as_view(), name='framewroks'),
     path('browsers', BrowserView.as_view(), name='browsers'),
