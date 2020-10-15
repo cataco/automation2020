@@ -2,10 +2,12 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework.generics import ListAPIView, ListCreateAPIView
+from rest_framework.viewsets import ModelViewSet
 from tests.models import Reports, TestStrategy, End2End, RandomTest, BDDTest, MobileTest, VRTTest, Framework,\
-    Browser, AndroidVersion, MobileRandomTest
+    Browser, AndroidVersion, MobileRandomTest, VRTReports
 from tests.serializers import ReportsSerializer, TestStrategySerializer, End2EndSerializer, RandomTestSerializer, BDDTestSerializer,\
-    MobileTestSerializer, VRTSerializer, FrameworkSerializer, BrowserSerializer, AndroidVersionSerializer, MobileRandomTestSerializer
+    MobileTestSerializer, VRTSerializer, FrameworkSerializer, BrowserSerializer, AndroidVersionSerializer, MobileRandomTestSerializer,\
+        VRTReportsSerializer
 
 class ReportsViewSet(ListAPIView):
     serializer_class = ReportsSerializer
@@ -51,3 +53,7 @@ class AndroidVersionView(ListAPIView):
 class MobileRandomTestView(ListCreateAPIView):
     queryset = MobileRandomTest.objects.all()
     serializer_class = MobileRandomTestSerializer
+
+class VRTReportsView(ModelViewSet):
+    queryset = VRTReports.objects.all()
+    serializer_class = VRTReportsSerializer

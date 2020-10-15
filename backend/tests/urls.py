@@ -5,6 +5,8 @@ from rest_framework import routers
 from tests.views import ReportsViewSet, TestStrategyView, End2EndView, RandomTestView, BDDTestView,\
     MobileTestView, VRTTestView, FrameworkView, BrowserView, AndroidVersionView, MobileRandomTestView
 
+router = routers.DefaultRouter()
+router.register(r'vrt-reports', VRTReportsView)
 
 urlpatterns = [
     url(r'^reports', ReportsViewSet.as_view(), name='reports'),
@@ -19,3 +21,5 @@ urlpatterns = [
     path('browsers', BrowserView.as_view(), name='browsers'),
     path('android-versions', AndroidVersionView.as_view(), name='android-versions'),
 ]
+
+urlpatterns += router.urls
