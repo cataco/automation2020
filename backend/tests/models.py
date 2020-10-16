@@ -22,7 +22,7 @@ class Browser(models.Model):
 
 
 class AndroidVersion(models.Model):
-    versionName = models.CharField(max_length=20)
+    versionName = models.CharField(max_length=255)
     versionNumber = models.CharField(max_length=10)
 
     def __str__(self):
@@ -81,7 +81,7 @@ def set_path(instance, filename):
 
 class End2End(WebTest):
     testScript = models.FileField(upload_to=set_path, validators=[
-                                  FileExtensionValidator(allowed_extensions=['js', 'zip'])])
+        FileExtensionValidator(allowed_extensions=['js', 'zip'])])
 
 
 @receiver(post_save, sender=End2End)
@@ -125,9 +125,12 @@ def run_test_bdd_task(sender, instance, **kwargs):
     run_bdd_test.delay(instance.features.name.lower(),
                        instance.stepsScript.name, instance.pk)
 
+
 # ------------- VRT ------------------
 def set_vrt_path(instance, filename):
     return 'vrt/{}/{}'.format(instance.framework.name.lower(), filename)
+
+
 class VRTTest(WebTest):
     url1 = models.URLField(max_length=250)
     url2 = models.URLField(max_length=250)
@@ -136,12 +139,14 @@ class VRTTest(WebTest):
 
 # --------------- Mobile ---------------------
 def seth_apk_path(instance, filename):
-    pathName = instance.name.lower().replace(' ', '_')
+    pathName = instance.name
     return 'mobile/{}/{}'.format(pathName, filename)
 
+
 def seth_scripts_path(instance, filename):
-    pathName = instance.name.lower().replace(' ', '_')
+    pathName = instance.name
     return 'mobile/{}/{}'.format(pathName, filename)
+
 
 class MobileTest(TestRequest):
     androidVersion = models.ForeignKey(
@@ -150,9 +155,16 @@ class MobileTest(TestRequest):
         allowed_extensions=['apk'])])  # -> Confirm upload dir
     scripts = models.FileField(upload_to=seth_scripts_path, validators=[FileExtensionValidator(
         allowed_extensions=['zip', 'py'])])  # -> Confirm upload dir
-    
+
     def __str__(self):
         return str(self.name) + ' - ' + str(self.appName) + ' -- ' + str(self.createdAt)
+
+
+@receiver(post_save, sender=MobileTest)
+def run_test_e2e_mobile_task(sender, instance, **kwargs):
+    from tests.tasks import run_test_e2e_mobile_task
+    run_test_e2e_mobile_task.delay(instance.name, instance.appApk.name.split("/")[-1],
+                                   instance.scripts.name, instance.pk, instance.androidVersion.versionName)
 
 
 class MobileRandomTest(TestRequest):
@@ -160,6 +172,17 @@ class MobileRandomTest(TestRequest):
         AndroidVersion, on_delete=models.DO_NOTHING)
     appApk = models.FileField(upload_to=seth_apk_path, validators=[FileExtensionValidator(
         allowed_extensions=['apk'])])
+    eventsNumber = models.IntegerField()
+    packageName = models.CharField(max_length=255)
 
     def __str__(self):
         return str(self.name) + ' - ' + str(self.appName) + ' -- ' + str(self.createdAt)
+
+
+@receiver(post_save, sender=MobileRandomTest)
+def run_test_random_mobile_task(sender, instance, **kwargs):
+    from tests.tasks import run_test_random_mobile_task
+    run_test_random_mobile_task.delay(instance.name, instance.appApk.name.split("/")[-1],
+                                      instance.packageName, instance.pk,
+                                      instance.androidVersion.versionNumber, instance.eventsNumber,
+                                      instance.androidVersion.versionName)

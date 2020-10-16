@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Framework, RandomTest, TestStrategy, End2End, Browser, Reports, BDDTest, \
-    AndroidVersion, MobileTest, MobileRandomTest, VRTTest
+    AndroidVersion, MobileTest, MobileRandomTest
+
 
 # Register your models here.
 
@@ -10,6 +11,7 @@ class FrameworkAdmin(admin.ModelAdmin):
         'name'
     )
 
+
 admin.site.register(Framework, FrameworkAdmin)
 
 
@@ -18,7 +20,8 @@ class TestStrategyAdmin(admin.ModelAdmin):
         'name',
         'createdAt',
     )
-    
+
+
 admin.site.register(TestStrategy, TestStrategyAdmin)
 
 
@@ -44,7 +47,9 @@ class End2EndAdmin(admin.ModelAdmin):
     )
     list_filter = ['framework']
 
+
 admin.site.register(End2End, End2EndAdmin)
+
 
 class RandomTestAdmin(admin.ModelAdmin):
     list_display = (
@@ -58,6 +63,7 @@ class RandomTestAdmin(admin.ModelAdmin):
 
 admin.site.register(RandomTest, RandomTestAdmin)
 
+
 class BddTestAdmin(admin.ModelAdmin):
     list_display = (
         'name',
@@ -67,7 +73,9 @@ class BddTestAdmin(admin.ModelAdmin):
         'createdAt'
     )
 
+
 admin.site.register(BDDTest, BddTestAdmin)
+
 
 class MobileTestAdmin(admin.ModelAdmin):
     list_display = (
@@ -77,6 +85,7 @@ class MobileTestAdmin(admin.ModelAdmin):
         'androidVersion',
         'createdAt'
     )
+
 
 admin.site.register(MobileTest, MobileTestAdmin)
 
@@ -93,16 +102,17 @@ class VRTTestAdmin(admin.ModelAdmin):
 
 admin.site.register(VRTTest, VRTTestAdmin)
 
+
 class MobileRandomTestAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'appApk',
+        'eventsNumber',
         'androidVersion',
-        'createdAt'
+        'packageName'
     )
 
 
 admin.site.register(MobileRandomTest, MobileRandomTestAdmin)
-
 models = [Browser, AndroidVersion]
 admin.site.register(models)
