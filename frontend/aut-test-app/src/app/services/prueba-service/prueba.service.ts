@@ -51,6 +51,7 @@ export class PruebaService {
       observe: 'events'
     });
   }
+  
   saveMonkeyTest(form): Observable<any> {
     const formData = {
       appName: form.get('appName').value,
@@ -63,6 +64,21 @@ export class PruebaService {
       browser: form.get('browser').value
     };
     return this.httpClinet.postJSON('random-tests', formData);
+  }
+
+  saveMovileMonkeyTest(form): Observable<any> {
+    const formData = new FormData();
+    // formData.append('nombre', documento.name);
+    formData.append('appName', form.get('appName').value);
+    formData.append('appVersion', form.get('appVersion').value);
+    formData.append('name', form.get('name').value);
+    formData.append('strategy', form.get('strategy').value);
+    formData.append('androidVersion', form.get('androidVersion').value);
+    // let headers = new HttpHeaders({'Authorization': 'Token ' + this.token});
+    return this.http.post(this.baseUrl + 'mobile-random-tests', formData, {
+      // 'headers': headers, reportProgress: true,
+      observe: 'events'
+    });
   }
 
 }

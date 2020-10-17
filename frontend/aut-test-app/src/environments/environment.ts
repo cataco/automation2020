@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlBack: 'http://ec2-52-91-152-172.compute-1.amazonaws.com:8000/api/test/'
+  //urlBack: 'http://ec2-54-208-180-208.compute-1.amazonaws.com:8000/api/test/'
+  urlBack: 'http://localhost:3000/'
 };
 
 /*

@@ -31,7 +31,9 @@
           <mat-icon>timer</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
-      {{result.err.message}}      
+      <div *ngIf="!result.pass">
+        {{result.err.message}}
+      </div>
     </mat-expansion-panel>
     
   </mat-expansion-panel>

@@ -156,7 +156,15 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Strategy</mat-label>
-          <input matInput formControlName="strategy">
+          <mat-select  formControlName="strategy">
+            <mat-option *ngFor="let strategy of strategies" value="{{strategy.id}}">{{strategy.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Android Version</mat-label>
+          <mat-select  formControlName="androidVersion">
+            <mat-option *ngFor="let version of mobileVersion" value="{{version.id}}">{{version.versionName}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </form>
 
@@ -194,13 +202,18 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <form [formGroup]="registerForm">
-          <mat-grid-list cols="3" rowHeight="2:1">
-            <mat-form-field>
-              <mat-label>Numero de eventos</mat-label>
-              <input matInput formControlName="events">
-            </mat-form-field>
-            <button mat-raised-button color="primary">Ejecutar monkey</button>
-          </mat-grid-list>
+          <div class="progress form-group" *ngIf="progress > 0">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+            </div>
+          </div>
+
+          <br>
+          <input type="file" (change)="subirApk($event)" placeholder="Apk to test">
+          <mat-form-field>
+            <mat-label>Numero de eventos</mat-label>
+            <input matInput formControlName="events">
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="uploadApk()">Ejecutar monkey</button>
         </form>
       </mat-expansion-panel>
     </mat-accordion>

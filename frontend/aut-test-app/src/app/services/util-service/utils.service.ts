@@ -41,4 +41,15 @@ export class UtilsService {
     );
   }
 
+  // tslint:disable-next-line:typedef
+  getAndroidVersion() {
+    return this.httpService.getRequestWithoutPar('android-versions').map(
+      response => {
+        return response;
+      }, error => {
+        return error;
+      }
+    );
+  }
+
 }

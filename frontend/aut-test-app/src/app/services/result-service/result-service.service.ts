@@ -19,4 +19,15 @@ export class ResultService {
     );
   }
 
+  // tslint:disable-next-line:typedef
+  getMovilReportResult() {
+    return this.httpService.getRequestWithoutPar('report').map(
+      response => {
+        return response;
+      }, error => {
+        return error;
+      }
+    );
+  }
+
 }
