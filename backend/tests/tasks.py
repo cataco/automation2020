@@ -104,3 +104,28 @@ def run_test_random_mobile_task(folder_name, apk, package, instance_id, device_v
     os.system("adb shell monkey -p {} -v {}".format(package, number_of_events))
     os.system("adb disconnect {}:{}".format(os.environ.get('environment_id'),
                                          os.environ.get('ANDROID_PORT_{}'.format(device_version))))
+
+@app.task()
+def run_vrt_test(file_name: str, test_id):
+    try:
+        subprocess.run(["cp", "medias/vrt/" + file_name, "../cypress/cypress/integration"])
+        os.chdir('/srv/www/backend/cypress')
+        test = TestRequest.objects.get(pk=test_id)
+        command_list = ["npx", "cypress", "run", "--spec", 'cypress/integration/' + file_name.split('/')[-1],
+                        "--reporter", "mochawesome"]
+        return execute_vrt_test(command_list, test)
+    except Exception as e:
+        raise e
+
+def execute_vrt_test(command_list, test, cypress_type:str = 'cypress'):
+    if not test.headless:
+        command_list.append("--headed")
+    command_list.append("-b")
+    command_list.append(test.browser.name)
+    os.chdir('/srv/www/backend/{}'.format(cypress_type))
+    print(command_list)
+    run_test = subprocess.run(command_list, capture_output=True)
+    json_response = open('/srv/www/backend/{}/cypress/results/mochawesome.json'.format(cypress_type), 'r')
+    VRTReports.objects.create(test=test, image1='', image2='')
+    subprocess.run(["rm", "-rf", "../cypress/cypress/results"])
+    return run_test

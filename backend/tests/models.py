@@ -134,7 +134,12 @@ def set_vrt_path(instance, filename):
 class VRTTest(WebTest):
     url1 = models.URLField(max_length=250)
     url2 = models.URLField(max_length=250)
-    sripts = models.FileField(upload_to='?', validators=[FileExtensionValidator(allowed_extensions=['js', 'zip'])])
+    sripts = models.FileField(upload_to=set_vrt_path, validators=[FileExtensionValidator(allowed_extensions=['js', 'zip'])])
+
+@receiver(post_save, sender=BDDTest)
+def run_vrt_test_task(sender, instance, **kwargs):
+    from tests.tasks import run_vrt_test
+    run_vrt_test.delay(instance.sripts, instance.pk)
 
 
 # --------------- Mobile ---------------------
