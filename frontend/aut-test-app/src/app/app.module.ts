@@ -20,6 +20,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
 
 
 // @ts-ignore
@@ -43,6 +44,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatFormFieldModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatGridListModule,
     ReactiveFormsModule,
     MatTabsModule,

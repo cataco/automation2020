@@ -8,8 +8,9 @@ export class ResultService {
 
   constructor(private httpService: HttpService) { }
 
+  // tslint:disable-next-line:typedef
   getReportResult() {
-    return this.httpService.getRequestWithoutPar('results').map(
+    return this.httpService.getRequestWithoutPar('reports').map(
       response => {
         return response;
       }, error => {
@@ -17,8 +18,10 @@ export class ResultService {
       }
     );
   }
-  getReportStats() {
-    return this.httpService.getRequestWithoutPar('stats').map(
+
+  // tslint:disable-next-line:typedef
+  getMovilReportResult() {
+    return this.httpService.getRequestWithoutPar('report').map(
       response => {
         return response;
       }, error => {

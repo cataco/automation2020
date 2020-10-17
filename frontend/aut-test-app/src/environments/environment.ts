@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  //urlBack: 'http://ec2-54-208-180-208.compute-1.amazonaws.com:8000/api/test/'
+  urlBack: 'http://localhost:3000/'
 };
 
 /*

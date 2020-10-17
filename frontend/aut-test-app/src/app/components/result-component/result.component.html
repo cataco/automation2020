@@ -1,4 +1,5 @@
-<mat-accordion>
+<span *ngIf="stats === undefined">No hay resultados </span>
+<mat-accordion *ngIf="stats !== undefined">
   <mat-expansion-panel>
     <!--Titulo del test-->
     <mat-expansion-panel-header style="height: 100px;">
@@ -30,7 +31,9 @@
           <mat-icon>timer</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
-      {{result.err.message}}      
+      <div *ngIf="!result.pass">
+        {{result.err.message}}
+      </div>
     </mat-expansion-panel>
     
   </mat-expansion-panel>
