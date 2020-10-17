@@ -14,6 +14,7 @@
   "devDependencies": {
     "cypress-cucumber-preprocessor": "^2.5.5",
     "mochawesome": "^6.1.1",
+    "faker": "^5.1.0",
     "mochawesome-report-generator": "^5.1.0"
   },
   "cypress-cucumber-preprocessor": {

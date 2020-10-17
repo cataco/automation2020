@@ -1,6 +1,9 @@
-context('Page Creation', () => {
+const faker = require("faker");
 
-    it('Creates a post', () => {
+context('Page Creation', () => {
+  let title = faker.random.word();
+
+    it('Creates a page with title '+title, () => {
         cy.visit('http://localhost:2368/ghost/#/signin')
 
         cy.get('[placeholder="Email Address"]').type('sergoix93@hotmail.com');
