@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from backend.celery import app
 import os
 import subprocess
+import glob
 
 from tests.models import Reports, TestRequest
 from appium import webdriver
@@ -121,11 +122,13 @@ def execute_vrt_test(command_list, test, cypress_type:str = 'cypress'):
     if not test.headless:
         command_list.append("--headed")
     command_list.append("-b")
-    command_list.append(test.browser.name)
+    command_list.append(test.browser.name)    
     os.chdir('/srv/www/backend/{}'.format(cypress_type))
     print(command_list)
     run_test = subprocess.run(command_list, capture_output=True)
-    json_response = open('/srv/www/backend/{}/cypress/results/mochawesome.json'.format(cypress_type), 'r')
-    VRTReports.objects.create(test=test, image1='', image2='')
-    subprocess.run(["rm", "-rf", "../cypress/cypress/results"])
+    image1, image2 = (* glob.glob('screenshot*'),)
+    image1 = open('/srv/www/backend/{}/cypress/vrt/{}'.format(cypress_type, image1), 'rb')
+    image2 = open('/srv/www/backend/{}/cypress/vrt/{}'.format(cypress_type, image2), 'rb')
+    VRTReports.objects.create(test=test, image1=image1, image2=image2)
+    subprocess.run(["rm", "-rf", "../cypress/cypress/vrt"])
     return run_test

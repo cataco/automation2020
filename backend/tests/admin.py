@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Framework, RandomTest, TestStrategy, End2End, Browser, Reports, BDDTest, \
-    AndroidVersion, MobileTest, MobileRandomTest
+    AndroidVersion, MobileTest, MobileRandomTest, VRTTest
 
 
 # Register your models here.

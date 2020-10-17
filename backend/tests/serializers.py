@@ -49,7 +49,7 @@ class VRTSerializer(serializers.ModelSerializer):
 class VRTReportsSerializer(serializers.ModelSerializer):    
     class Meta:
         model = VRTReports
-        fields = '__all__
+        fields = '__all__'
 
 class FrameworkSerializer(serializers.ModelSerializer):
     class Meta:

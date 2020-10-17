@@ -3,7 +3,8 @@ from django.urls import path
 from rest_framework import routers
 
 from tests.views import ReportsViewSet, TestStrategyView, End2EndView, RandomTestView, BDDTestView,\
-    MobileTestView, VRTTestView, FrameworkView, BrowserView, AndroidVersionView, MobileRandomTestView
+    MobileTestView, VRTTestView, FrameworkView, BrowserView, AndroidVersionView, MobileRandomTestView,\
+        VRTReportsView
 
 router = routers.DefaultRouter()
 router.register(r'vrt-reports', VRTReportsView)
