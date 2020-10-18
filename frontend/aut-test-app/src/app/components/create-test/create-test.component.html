@@ -20,10 +20,34 @@
           <mat-label>Test Name</mat-label>
           <input matInput formControlName="name">
         </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Browser</mat-label>
+          <mat-select formControlName="framework">
+            <mat-option *ngFor="let browser of browsers" [value]="browser.id" >
+              {{browser.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Framework</mat-label>
+          <mat-select formControlName="browser">
+            <mat-option *ngFor="let framework of frameworks" [value]="framework.id" >
+              {{framework.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label>Strategy</mat-label>
-          <input matInput formControlName="strategy">
+          <mat-select formControlName="strategy">
+            <mat-option *ngFor="let strategy of strategies" [value]="strategy.id" >
+              {{strategy.name}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
+
       </form>
 
     </mat-card>
@@ -106,17 +130,18 @@
         <form [formGroup]="registerForm">
           <mat-grid-list cols="3" rowHeight="2:1">
 
-          <mat-form-field>
-            <mat-label>URL version 1</mat-label>
-            <input matInput formControlName="url1">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>URL version 2</mat-label>
-            <input matInput formControlName="url2">
-          </mat-form-field>
-             <label for="filses" class="btn">Script</label>
-            <input type="file" id="filses" (change)="subirFeatures($event)" placeholder="testScriptVrt" style="padding-left: 10px">
-            <button mat-raised-button color="primary" (click)="uploadFileBDD()">Ejecutar BDD</button>
+            <mat-form-field>
+              <mat-label>URL version 1</mat-label>
+              <input matInput formControlName="url1">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>URL version 2</mat-label>
+              <input matInput formControlName="url2">
+            </mat-form-field>
+            <label for="filses" class="btn">Script</label>
+            <input type="file" id="filses" (change)="subirVrt($event)" placeholder="sripts"
+                   style="padding-left: 10px">
+            <button mat-raised-button color="primary" (click)="runVrt()">Ejecutar VRT</button>
           </mat-grid-list>
         </form>
       </mat-expansion-panel>
@@ -127,26 +152,36 @@
     <br>
     <mat-card>
       <h3>Informacion básica</h3>
-      <form [formGroup]="registerForm">
+      <form [formGroup]="mobileForm">
         <mat-form-field>
-          <mat-label>App name</mat-label>
-          <input matInput formControlName="appName">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>App Url</mat-label>
-          <input matInput formControlName="appUrl">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>App version</mat-label>
-          <input matInput formControlName="appVersion">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Test Name</mat-label>
+          <mat-label>Test name</mat-label>
           <input matInput formControlName="name">
         </mat-form-field>
         <mat-form-field>
+          <mat-label>App Name</mat-label>
+          <input matInput formControlName="appName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>App Version</mat-label>
+          <input matInput formControlName="appVersion">
+        </mat-form-field>
+
+        <mat-form-field>
           <mat-label>Strategy</mat-label>
-          <input matInput formControlName="strategy">
+          <mat-select formControlName="strategy">
+            <mat-option *ngFor="let strategy of strategies" [value]="strategy.id" >
+              {{strategy.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Android Version</mat-label>
+          <mat-select formControlName="androidVersion">
+            <mat-option *ngFor="let version of versions" [value]="version.id">
+              {{version.versionName}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </form>
 
@@ -163,20 +198,24 @@
 
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <form [formGroup]="registerForm">
+        <form [formGroup]="mobileForm">
           <div class="progress form-group" *ngIf="progress > 0">
             <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
             </div>
           </div>
 
           <br>
-          <input type="file" (change)="subirScript($event)" placeholder="testScript">
-          <button mat-raised-button color="primary" (click)="uploadFile()">Ejecutar script</button>
+          <label for="mobileScript" class="btn">Script</label>
+          <input type="file" id="mobileScript" (change)="subirMobileScript($event)">
+          <label for="apk" class="btn">Apk</label>
+          <input type="file" id="apk" (change)="subirApkScript($event)">
+          <button mat-raised-button color="primary" (click)="runE2E()">Ejecutar script</button>
         </form>
       </mat-expansion-panel>
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
+
           <mat-panel-title>
             Monkey testing
           </mat-panel-title>
@@ -184,17 +223,21 @@
             Diligencie el formulario con los eventos que desee que se ejecuten en su aplicacion
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-grid-list cols="3" rowHeight="2:1">
-          <mat-form-field>
-            <mat-label>Url de la aplicacion a probar</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Numero de eventos</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <button mat-raised-button color="primary">Ejecutar monkey</button>
-        </mat-grid-list>
+        <form [formGroup]="mobileForm">
+          <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-form-field>
+              <mat-label>Package Name</mat-label>
+              <input matInput formControlName="packageName">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Numero de eventos</mat-label>
+              <input matInput formControlName="eventsNumber">
+            </mat-form-field>
+            <label for="apk2" class="btn">Apk</label>
+            <input type="file" id="apk2" (change)="subirApkScript($event)">
+            <button mat-raised-button color="primary" (click)="runMobileRandom()">Ejecutar monkey</button>
+          </mat-grid-list>
+        </form>
       </mat-expansion-panel>
     </mat-accordion>
     <br>
