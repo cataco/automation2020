@@ -14,9 +14,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class CreateTestComponent implements OnInit {
   files: any = [];
-  browsers: [];
-  strategies: [];
-  frameworks: [];
   mobileVersion: [];
   panelOpenState = false;
   progress = 0;
@@ -95,15 +92,15 @@ export class CreateTestComponent implements OnInit {
 
   getFrameworks() {
     this.service.getFrameworks().subscribe(data => {
-      this.frameworks=data;
+      this.frameworks = data;
     }, error => {
       Swal.fire('Error!', 'Error creando pregunta', 'error');
     });
   }
 
-getStrategies() {
+  getStrategies() {
     this.service.getStrategies().subscribe(data => {
-      this.strategies=data;
+      this.strategies = data;
     }, error => {
       Swal.fire('Error!', 'Error creando pregunta', 'error');
     });
@@ -111,15 +108,15 @@ getStrategies() {
 
   getBrowsers() {
     this.service.getBrowsers().subscribe(data => {
-      this.browsers=data;
+      this.browsers = data;
     }, error => {
       Swal.fire('Error!', 'Error creando pregunta', 'error');
     });
   }
 
-    getVersions() {
+  getVersions() {
     this.service.getAndroidVer().subscribe(data => {
-      this.versions=data;
+      this.versions = data;
     }, error => {
       Swal.fire('Error!', 'Error creando pregunta', 'error');
     });
@@ -235,33 +232,6 @@ getStrategies() {
     });
   }
 
-  uploadApk() {
-    //console.log('files lengt', this.files.length);
-    this.service.saveMovileMonkeyTest(this.registerForm).subscribe((event: HttpEvent<any>) => {
-      switch (event.type) {
-        case HttpEventType.Sent:
-          console.log('Request has been made!');
-          break;
-        case HttpEventType.ResponseHeader:
-          console.log('Response header has been received!');
-          break;
-        case HttpEventType.UploadProgress:
-          this.progress = Math.round(event.loaded / event.total * 100);
-          console.log(`Uploaded! ${this.progress}%`);
-          break;
-        case HttpEventType.Response:
-          console.log('Video subido satisfactoriamente!', event.body);
-          Swal.fire('Success!', 'Prueba ejecutada satisfactoriamente', 'success');
-          this.progress = 0;
-          this.files.splice(0, 1)
-      }
-    }, error => {
-      console.log('Error registrandose-> ', error.error);
-      Swal.fire('Oops...', 'Parece que hubo un problema con el archivo, revisa su extension e intenta de nuevo', 'error');
-      this.progress = 0;
-    });
-  }
-
   subirScript(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -310,13 +280,6 @@ getStrategies() {
     }
   }
 
-  saveMonkeyTest() {
-    this.service.saveMonkeyTest(this.registerForm).subscribe(response => {
-      Swal.fire('Success!', 'Prueba ejecutada satisfactoriamente', 'success');
-    }, error => {
-      Swal.fire('Oops...', 'Parece que hubo un problema con el test, intenta de nuevo', 'error');
-    });
-  }
   runMobileRandom() {
     this.service.runRandomMobile(this.mobileForm).subscribe((event: HttpEvent<any>) => {
       switch (event.type) {
@@ -344,7 +307,7 @@ getStrategies() {
   }
 
   subirVrt(event) {
-     if (event.target.files.length > 0) {
+    if (event.target.files.length > 0) {
       const file = event.target.files[0];
       console.log('logo_asamblea', event.target.files[0])
       this.registerForm.get('sripts').setValue(file);
