@@ -40,31 +40,31 @@ export class ResultComponent implements OnInit {
   getMovilReport() {
     this.resultService.getMovilReportResult().subscribe(
       response => {
-          console.log('response=>', response);
-          this.testTittle = response.collectors[0].result[0].nodeid;
-          this.stats =
-          {duration: response.duration * 1000,
-            tests: response.summary.total,
-            failures: response.summary.failed,
-            passes: response.summary.passed,
+        console.log('response=>', response);
+        this.testTittle = response.collectors[0].result[0].nodeid;
+        this.stats =
+        {
+          duration: response.duration * 1000,
+          tests: response.summary.total,
+          failures: response.summary.failed,
+          passes: response.summary.passed,
+        };
+        let tests = Array();
+        response.tests.forEach(element => {
+          const test = {
+            pass: element.outcome === 'passed' ? true : false,
+            title: element.nodeid,
+            duration: (element.setup.duration + element.call.duration + element.teardown.duration) * 1000,
+            err: { message: element.call.crash !== undefined ? element.call.crash.message : '' }
+
           };
-          let tests = Array();
-          response.tests.forEach(element => {
-            const test = {
-              pass: element.outcome === 'passed' ? true : false,
-              title: element.nodeid,
-              duration: (element.setup.duration + element.call.duration +  element.teardown.duration) * 1000,
-              err: {message: element.call.crash !== undefined ? element.call.crash.message : ''}
+          tests.push(test);
 
-            };
-            tests.push(test);
-
-          });
-          this.testList = tests;
+        });
+        this.testList = tests;
       }, error => {
         console.log('error getMovilReport', error);
       }
     );
   }
-
 }
