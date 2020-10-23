@@ -60,21 +60,10 @@ def execute_test(command_list, test, cypress_type: str = 'cypress'):
     subprocess.run(["rm", "-rf", "../cypress/cypress/results"])
     return run_test
 
-@app.task()
-def run_test_e2e_mobile_task(folder_name, apk, scripts, test):
-    os.environ["apk"] = apk.split("/")[-1]
-    os.chdir('/srv/www/backend/backend/medias/mobile/{}'.format(folder_name))
-    if "zip" in scripts:
-        subprocess.run(["unzip", scripts.split("/")[-1]])
-        os.system("pytest --html=report.html")
-    else:
-        os.system("pytest {} --html=report.html".format(scripts.split("/")[-1]))
-    json_response = open('report.html', 'r')
-    Reports.objects.create(test_id=test, testResults=json_response.read())
 
 @app.task()
 def run_test_e2e_mobile_task(folder_name, apk, scripts, test, device):
-    os.environ["apk"] = apk.split("/")[-1]
+    os.environ["apk"] = folder_name + "/" + apk.split("/")[-1]
     os.environ["adv"] = device
 
     os.chdir('/srv/www/backend/backend/medias/mobile/{}'.format(folder_name))
@@ -86,6 +75,7 @@ def run_test_e2e_mobile_task(folder_name, apk, scripts, test, device):
         os.system("pytest {} --html=report.html".format(scripts.split("/")[-1]))
     json_response = open('report.html', 'r')
     Reports.objects.create(test_id=test, testResults=json_response.read())
+
 
 @app.task()
 def run_test_random_mobile_task(folder_name, apk, package, instance_id, device_version, number_of_events, device_name):
@@ -106,6 +96,7 @@ def run_test_random_mobile_task(folder_name, apk, package, instance_id, device_v
     os.system("adb disconnect {}:{}".format(os.environ.get('environment_id'),
                                          os.environ.get('ANDROID_PORT_{}'.format(device_version))))
 
+
 @app.task()
 def run_vrt_test(file_name: str, test_id):
     try:
@@ -117,6 +108,7 @@ def run_vrt_test(file_name: str, test_id):
         return execute_vrt_test(command_list, test)
     except Exception as e:
         raise e
+
 
 def execute_vrt_test(command_list, test, cypress_type:str = 'cypress'):
     if not test.headless:

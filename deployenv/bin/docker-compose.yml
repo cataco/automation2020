@@ -17,6 +17,8 @@ services:
       - "POSTGRES_PORT=${POSTGRES_PORT}"
       - "EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}"
       - "SENDGRID_API_KEY=${SENDGRID_API_KEY}"
+      - "SELENIUM_PORT=${SELENIUM_PORT}"
+      - "environment_id=${environment_id}"
     ports:
       - "${BACKEND_IP}:${BACKEND_HTTP_PORT}:80"
     env_file: .env
@@ -42,6 +44,8 @@ services:
       - "POSTGRES_PORT=${POSTGRES_PORT}"
       - "EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}"
       - "SENDGRID_API_KEY=${SENDGRID_API_KEY}"
+      - "SELENIUM_PORT=${SELENIUM_PORT}"
+      - "environment_id=${environment_id}"
 
     ports:
       - "${CELERY_IP}:${CELERY_HTTP_PORT}:80"
@@ -90,6 +94,8 @@ services:
       - "POSTGRES_PORT=${POSTGRES_PORT}"
       - "EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}"
       - "SENDGRID_API_KEY=${SENDGRID_API_KEY}"
+      - "SELENIUM_PORT=${SELENIUM_PORT}"
+      - "environment_id=${environment_id}"
 
     ports:
       - "${FLOWER_IP}:${FLOWER_HTTP_PORT}:80"
