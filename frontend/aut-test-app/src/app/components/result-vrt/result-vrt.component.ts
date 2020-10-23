@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as resemble from 'resemblejs';
+import { ResultService } from '../../services/result-service/result-service.service';
 
 @Component({
   selector: 'app-result-vrt',
@@ -9,19 +10,36 @@ import * as resemble from 'resemblejs';
 export class ResultVrtComponent implements OnInit {
 
   diferencia;
-  imagen;
-  constructor() { }
+  imagen1;
+  imagen2;
+  imagenDiff;
+  reports = [];
+  constructor(private resultService: ResultService) { }
 
   ngOnInit(): void {
     this.getImages();
+    this.resultService.getVrtResult().subscribe(response => {
+      console.log('results->', response);
+      if (response){
+        this.reports = response;
+      }
+    });
   }
 
   // tslint:disable-next-line:typedef
-  getImages() {
-    const diff = resemble('http://127.0.0.1:8887/test1.jpeg')
-      .compareTo('http://127.0.0.1:8887/test2.jpeg').onComplete(this.getDiff);
-    this.diferencia = sessionStorage.getItem('result').replaceAll('"', '');
-    this.imagen = sessionStorage.getItem('imagen');
+  generateResemble(id){
+    const report = this.getImages(id);
+    const diff = resemble(report.imagen1)
+      .compareTo(report.imagen2).onComplete(this.getDiff);
+    this.diferencia = sessionStorage.getItem('result');
+    this.imagenDiff = sessionStorage.getItem('imagen');
+
+
+  }
+
+  // tslint:disable-next-line:typedef
+  getImages(id) {
+    return this.reports.filter(report => report.id === id)[0];
 }
 
 // tslint:disable-next-line:typedef

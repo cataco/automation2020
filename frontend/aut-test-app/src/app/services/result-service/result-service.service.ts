@@ -30,4 +30,15 @@ export class ResultService {
     );
   }
 
+  // tslint:disable-next-line:typedef
+  getVrtResult() {
+    return this.httpService.getRequestWithoutPar('vrt-tests').map(
+      response => {
+        return response;
+      }, error => {
+        return error;
+      }
+    );
+  }
+
 }
