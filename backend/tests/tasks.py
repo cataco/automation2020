@@ -72,8 +72,8 @@ def run_test_e2e_mobile_task(folder_name, apk, scripts, test, device):
         subprocess.run(["unzip", scripts.split("/")[-1]])
         os.system("pytest --html=report.html")
     else:
-        os.system("pytest {} --html=report.html".format(scripts.split("/")[-1]))
-    json_response = open('report.html', 'r')
+        os.system("pytest {} --json-report".format(scripts.split("/")[-1]))
+    json_response = open('report.json', 'r')
     Reports.objects.create(test_id=test, testResults=json_response.read())
 
 
