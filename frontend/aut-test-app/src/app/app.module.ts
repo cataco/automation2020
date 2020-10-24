@@ -21,6 +21,7 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatSelectModule} from "@angular/material/select";
+import { ResultVrtComponent } from './components/result-vrt/result-vrt.component';
 
 
 // @ts-ignore
@@ -29,7 +30,8 @@ import {MatSelectModule} from "@angular/material/select";
     AppComponent,
     ResultComponent,
     CreateTestComponent,
-    BannerComponent
+    BannerComponent,
+    ResultVrtComponent
   ],
   imports: [
     BrowserModule,

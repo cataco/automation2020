@@ -17,18 +17,21 @@ services:
       - "POSTGRES_PORT=${POSTGRES_PORT}"
       - "EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}"
       - "SENDGRID_API_KEY=${SENDGRID_API_KEY}"
+      - "SELENIUM_PORT=${SELENIUM_PORT}"
+      - "environment_id=${environment_id}"
     ports:
       - "${BACKEND_IP}:${BACKEND_HTTP_PORT}:80"
     env_file: .env
     depends_on:
       - database
       - rabbit
+      - selenium_hub
     volumes:
       - medias:/srv/www/backend/backend/medias
   # django celery ---------------------------------------------------------------------
   celery:
     ipc: host
-    shm_size: 1024M
+    shm_size: 2gb
     image: "backend-${ENVIRONMENT}-${CURRENT_BRANCH}-${COMMIT_HASH}"
     container_name: "backend-${ENVIRONMENT}-celery"
     environment:
@@ -42,6 +45,11 @@ services:
       - "POSTGRES_PORT=${POSTGRES_PORT}"
       - "EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}"
       - "SENDGRID_API_KEY=${SENDGRID_API_KEY}"
+      - "SELENIUM_PORT=${SELENIUM_PORT}"
+      - "environment_id=${environment_id}"
+      - "ANDROID_PORT_2=${ANDROID_PORT_2}"
+      - "ANDROID_PORT_4=${ANDROID_PORT_4}"
+      - "ANDROID_PORT_6=${ANDROID_PORT_6}"
 
     ports:
       - "${CELERY_IP}:${CELERY_HTTP_PORT}:80"
@@ -90,6 +98,8 @@ services:
       - "POSTGRES_PORT=${POSTGRES_PORT}"
       - "EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}"
       - "SENDGRID_API_KEY=${SENDGRID_API_KEY}"
+      - "SELENIUM_PORT=${SELENIUM_PORT}"
+      - "environment_id=${environment_id}"
 
     ports:
       - "${FLOWER_IP}:${FLOWER_HTTP_PORT}:80"

@@ -11,9 +11,9 @@
         <mat-icon>content_paste</mat-icon>
         {{stats.tests}}             
         <mat-icon>close</mat-icon>
-        {{stats.failures}}   
+        {{stats.failures>0?stats.failures:'0'}}  
         <mat-icon>check</mat-icon>
-        {{stats.passes}}   
+        {{stats.passes>0?stats.passes:'0'}}   
 
       </mat-panel-title>
     </mat-expansion-panel-header>

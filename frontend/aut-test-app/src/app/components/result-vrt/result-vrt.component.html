@@ -1,0 +1,38 @@
+<div>% de diferencia :{{diferencia}}</div>
+
+<div>
+    <img style="width: 50%; height: 50%;" src="{{imagen1}}">
+    <img style="width: 50%; height: 50%;" src="{{imagen2}}">
+</div>
+<div>
+    <img style="width: 50%; height: 50%;" src="{{imagenDiff}}">
+</div>
+
+<div class="card text-center m-3">
+    <div class="card-body" *ngFor="let report of reports, let i=index;">
+      <div class="flex-grid">
+        <div class="col">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title> Reporte: {{report.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div>% de diferencia :{{diferencia}}</div>
+                <div>
+                    <img style="width: 50%; height: 50%;" src="{{report.imagen1}}">
+                    <img style="width: 50%; height: 50%;" src="{{report.imagen2}}">
+                </div>
+                <div>
+                    <img style="width: 50%; height: 50%;" src="{{imagenDiff}}">
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button style="background-color: #1a731a; color: white  " (click)="generateResemble(report.id)">
+                Generar comparasion
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>

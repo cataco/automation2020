@@ -61,20 +61,32 @@ def execute_test(command_list, test, cypress_type: str = 'cypress'):
     subprocess.run(["rm", "-rf", "../cypress/cypress/results"])
     return run_test
 
+
 @app.task()
 def run_test_e2e_mobile_task(folder_name, apk, scripts, test, device):
-    os.environ["apk"] = folder_name + '/' + apk.split("/")[-1]
     os.environ["adv"] = device
-
+    dc = {
+        'platformName': 'Android',
+        'deviceName': 'Android Emulator',
+        'automationName': 'UIAutomator2',
+        'avd': device,
+        "app": "/root/tmp/medias/mobile/{}/{}".format(folder_name, apk),
+    }
+    try:
+        driver = webdriver.Remote('http://{}:{}/wd/hub'.format(os.environ.get('environment_id'),
+                                                               os.environ.get('SELENIUM_PORT')), dc)
+        driver.quit()
+    except:
+        pass
     os.chdir('/srv/www/backend/backend/medias/mobile/{}'.format(folder_name))
-
     if "zip" in scripts:
         subprocess.run(["unzip", scripts.split("/")[-1]])
-        os.system("pytest --html=report.html")
+        os.system("pytest --json-report")
     else:
-        os.system("pytest {} --html=report.html".format(scripts.split("/")[-1]))
-    json_response = open('report.html', 'r')
+        os.system("pytest {} --json-report".format(scripts.split("/")[-1]))
+    json_response = open('.report.json', 'r')
     Reports.objects.create(test_id=test, testResults=json_response.read())
+
 
 @app.task()
 def run_test_random_mobile_task(folder_name, apk, package, instance_id, device_version, number_of_events, device_name):
@@ -84,16 +96,21 @@ def run_test_random_mobile_task(folder_name, apk, package, instance_id, device_v
         'platformName': 'Android',
         'deviceName': 'Android Emulator',
         'automationName': 'UIAutomator2',
-        'browserName': 'android',
         'avd': device_name,
-        "app": "/root/tmp/medias/mobile/{}/{}".format(folder_name, apk)
+        "app": "/root/tmp/medias/mobile/{}/{}".format(folder_name, apk),
+        'appPackage': package,
+        'appActivity': package + '.Main'
     }
-    driver = webdriver.Remote('http://{}:{}/wd/hub'.format(os.environ.get('environment_id'),
-                                                           os.environ.get('SELENIUM_PORT')), dc)
-    driver.quit()
+    try:
+        driver = webdriver.Remote('http://{}:{}/wd/hub'.format(os.environ.get('environment_id'),
+                                                               os.environ.get('SELENIUM_PORT')), dc)
+        driver.quit()
+    except:
+        pass
     os.system("adb shell monkey -p {} -v {}".format(package, number_of_events))
     os.system("adb disconnect {}:{}".format(os.environ.get('environment_id'),
-                                         os.environ.get('ANDROID_PORT_{}'.format(device_version))))
+                                            os.environ.get('ANDROID_PORT_{}'.format(device_version))))
+
 
 @app.task()
 def run_vrt_test(file_name: str, test_id):
@@ -109,7 +126,8 @@ def run_vrt_test(file_name: str, test_id):
     except Exception as e:
         raise e
 
-def execute_vrt_test(command_list, test, file_name, cypress_type:str = 'cypress'):
+
+def execute_vrt_test(command_list, test, cypress_type:str = 'cypress'):
     if not test.headless:
         command_list.append("--headed")
     command_list.append("-b")

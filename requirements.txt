@@ -113,3 +113,4 @@ newrelic==5.12.0.140
 dj-database-url
 gunicorn
 pytest-html
+pytest-json-report
