@@ -1,25 +1,25 @@
-<span *ngIf="stats === undefined">No hay resultados </span>
-<mat-accordion *ngIf="stats !== undefined">
+<span *ngIf="reportsShow === undefined">No hay resultados </span>
+<mat-accordion *ngFor="let report of reportsShow">
   <mat-expansion-panel>
     <!--Titulo del test-->
     <mat-expansion-panel-header style="height: 100px;">
       <mat-panel-title>
-        {{testTittle}}
+        {{report.testTittle}}
         <span></span>
         <mat-icon>timer</mat-icon>
-        {{stats.duration/1000}}s
+        {{report.stats.duration/1000}}s
         <mat-icon>content_paste</mat-icon>
-        {{stats.tests}}             
+        {{report.stats.tests}}             
         <mat-icon>close</mat-icon>
-        {{stats.failures>0?stats.failures:'0'}}  
+        {{report.stats.failures>0?report.stats.failures:'0'}}  
         <mat-icon>check</mat-icon>
-        {{stats.passes>0?stats.passes:'0'}}   
+        {{report.stats.passes>0?report.stats.passes:'0'}}   
 
       </mat-panel-title>
     </mat-expansion-panel-header>
 
     <!--Listado del test-->
-    <mat-expansion-panel hideToggle *ngFor="let result of testList">
+    <mat-expansion-panel hideToggle *ngFor="let result of report.testList">
       <mat-expansion-panel-header class="right-aligned-header">
         <mat-panel-title>
           <mat-icon *ngIf="result.pass">check</mat-icon>
