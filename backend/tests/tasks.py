@@ -66,9 +66,11 @@ def execute_test(command_list, test, cypress_type: str = 'cypress'):
 
 @app.task()
 def run_test_e2e_mobile_task(folder_name, apk, scripts, test, device):
+    sleep(10)
     os.environ["adv"] = device
     os.environ["app"] = "/root/tmp/medias/mobile/{}/{}".format(folder_name, apk)
     os.chdir('/srv/www/backend/backend/medias/mobile/{}'.format(folder_name))
+    sleep(10)
     if "zip" in scripts:
         subprocess.run(["unzip", scripts.split("/")[-1]])
         os.system("pytest --json-report")
@@ -80,6 +82,7 @@ def run_test_e2e_mobile_task(folder_name, apk, scripts, test, device):
 
 @app.task()
 def run_test_random_mobile_task(folder_name, apk, package, instance_id, device_version, number_of_events, device_name):
+    sleep(10)
     os.system("adb connect {}:{}".format(os.environ.get('environment_id'),
                                          os.environ.get('ANDROID_PORT_{}'.format(device_version))))
     dc = {
@@ -90,11 +93,12 @@ def run_test_random_mobile_task(folder_name, apk, package, instance_id, device_v
         "app": "/root/tmp/medias/mobile/{}/{}".format(folder_name, apk)
     }
     try:
-        driver = webdriver.Remote('http://{}/wd/hub'.format('selenium_hub:4444'), dc)
+        driver = webdriver.Remote('http://{}:{}/wd/hub'.format(os.environ.get('environment_id'),
+                                                               os.environ.get('SELENIUM_PORT')), dc)
         driver.quit()
     except:
         pass
-    sleep(60)
+    sleep(10)
     os.system("adb shell monkey -p {} -v {}".format(package, number_of_events))
     os.system("adb disconnect {}:{}".format(os.environ.get('environment_id'),
                                             os.environ.get('ANDROID_PORT_{}'.format(device_version))))
