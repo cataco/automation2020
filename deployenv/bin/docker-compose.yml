@@ -31,6 +31,8 @@ services:
   # django celery ---------------------------------------------------------------------
   celery:
     ipc: host
+    links:
+      - selenium_hub
     shm_size: 2gb
     image: "backend-${ENVIRONMENT}-${CURRENT_BRANCH}-${COMMIT_HASH}"
     container_name: "backend-${ENVIRONMENT}-celery"

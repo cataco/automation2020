@@ -1,4 +1,5 @@
 from datetime import datetime
+from time import sleep
 
 from django.conf import settings
 from django.db.models.signals import post_save
@@ -12,6 +13,7 @@ from django.core.files import File
 
 from tests.models import Reports, WebTest, VRTReports
 from appium import webdriver
+
 
 @app.task()
 def run_e2e_test(file_name: str, test_id):
@@ -65,19 +67,7 @@ def execute_test(command_list, test, cypress_type: str = 'cypress'):
 @app.task()
 def run_test_e2e_mobile_task(folder_name, apk, scripts, test, device):
     os.environ["adv"] = device
-    dc = {
-        'platformName': 'Android',
-        'deviceName': 'Android Emulator',
-        'automationName': 'UIAutomator2',
-        'avd': device,
-        "app": "/root/tmp/medias/mobile/{}/{}".format(folder_name, apk),
-    }
-    try:
-        driver = webdriver.Remote('http://{}:{}/wd/hub'.format(os.environ.get('environment_id'),
-                                                               os.environ.get('SELENIUM_PORT')), dc)
-        driver.quit()
-    except:
-        pass
+    os.environ["app"] = "/root/tmp/medias/mobile/{}/{}".format(folder_name, apk)
     os.chdir('/srv/www/backend/backend/medias/mobile/{}'.format(folder_name))
     if "zip" in scripts:
         subprocess.run(["unzip", scripts.split("/")[-1]])
@@ -97,16 +87,14 @@ def run_test_random_mobile_task(folder_name, apk, package, instance_id, device_v
         'deviceName': 'Android Emulator',
         'automationName': 'UIAutomator2',
         'avd': device_name,
-        "app": "/root/tmp/medias/mobile/{}/{}".format(folder_name, apk),
-        'appPackage': package,
-        'appActivity': package + '.Main'
+        "app": "/root/tmp/medias/mobile/{}/{}".format(folder_name, apk)
     }
     try:
-        driver = webdriver.Remote('http://{}:{}/wd/hub'.format(os.environ.get('environment_id'),
-                                                               os.environ.get('SELENIUM_PORT')), dc)
+        driver = webdriver.Remote('http://{}/wd/hub'.format('selenium_hub:4444'), dc)
         driver.quit()
     except:
         pass
+    sleep(60)
     os.system("adb shell monkey -p {} -v {}".format(package, number_of_events))
     os.system("adb disconnect {}:{}".format(os.environ.get('environment_id'),
                                             os.environ.get('ANDROID_PORT_{}'.format(device_version))))
@@ -134,11 +122,11 @@ def execute_vrt_test(command_list, test, cypress_type:str = 'cypress'):
     command_list.append(test.browser.name)
     os.chdir('/srv/www/backend/{}'.format(cypress_type))
     print(command_list)
-    
-    run_test = subprocess.run(command_list, capture_output=True) 
+
+    run_test = subprocess.run(command_list, capture_output=True)
     file_name = file_name.split('/')[1]
     os.chdir('/srv/www/backend/cypress/{}/screenshots'.format(cypress_type))
-    image1, image2 = (* glob.glob('**/*.png', recursive=True),)    
+    image1, image2 = (* glob.glob('**/*.png', recursive=True),)
     os.system("mv {} image1.png".format(image1))
     os.system("mv {} image2.png".format(image2))
     image1 = open('/srv/www/backend/{}/cypress/screenshots/image1.png'.format(cypress_type  ), 'rb')
