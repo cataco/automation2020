@@ -14,22 +14,31 @@ export class ResultComponent implements OnInit {
   testTittle: string;
   stats: any;
   panelOpenState: boolean;
+  reports: any;
+  reportsShow = new Array();
 
   constructor(private resultService: ResultService) { }
 
   ngOnInit() {
-    this.getMovilReport();
+    this.getReport();
   }
 
   // tslint:disable-next-line:typedef
   getReport() {
     this.resultService.getReportResult().subscribe(
       response => {
-        this.stats = response.stats;
-        if (response.results.length > 0) {
-          this.testTittle = response.results[0].suites[0].title;
-          this.testList = response.results[0].suites[0].tests;
-        }
+        this.reports = response;
+        this.getMovilReport();
+        this.reports.forEach(element => {
+          if (element.results) {
+            const report = {
+              stats : element.stats,
+              testTittle: element.results[0].suites[0].title,
+              testList: element.results[0].suites[0].tests
+            };
+            this.reportsShow.push(report);
+          }
+        });
       }, error => {
         console.log('error getReportResult', error);
       }
@@ -38,33 +47,34 @@ export class ResultComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   getMovilReport() {
-    this.resultService.getMovilReportResult().subscribe(
-      response => {
-        console.log('response=>', response);
-        this.testTittle = response.collectors[0].result[0].nodeid;
-        this.stats =
+    console.log('response=>', this.reports);
+    this.reports.forEach(element => {
+      if (element.collectors) {
+        const stats =
         {
-          duration: response.duration * 1000,
-          tests: response.summary.total,
-          failures: response.summary.failed,
-          passes: response.summary.passed,
+          duration: element.duration * 1000,
+          tests: element.summary.total,
+          failures: element.summary.failed,
+          passes: element.summary.passed,
         };
+
         let tests = Array();
-        response.tests.forEach(element => {
+        element.tests.forEach(element1 => {
           const test = {
-            pass: element.outcome === 'passed' ? true : false,
-            title: element.nodeid,
-            duration: (element.setup.duration + element.call.duration + element.teardown.duration) * 1000,
-            err: { message: element.call.crash !== undefined ? element.call.crash.message : '' }
+            pass: element1.outcome === 'passed' ? true : false,
+            title: element1.nodeid,
+            duration: (element1.setup.duration + element1.call.duration + element1.teardown.duration) * 1000,
+            err: { message: element1.call.crash !== undefined ? element1.call.crash.message : '' }
 
           };
           tests.push(test);
 
         });
-        this.testList = tests;
-      }, error => {
-        console.log('error getMovilReport', error);
+        const testList = tests;
+        const report = {stats, testList, testTittle: element.collectors[0].result[0].nodeid};
+        this.reportsShow.push(report);
+
       }
-    );
+    });
   }
 }

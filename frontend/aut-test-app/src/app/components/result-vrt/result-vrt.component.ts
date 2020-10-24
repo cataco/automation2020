@@ -17,7 +17,6 @@ export class ResultVrtComponent implements OnInit {
   constructor(private resultService: ResultService) { }
 
   ngOnInit(): void {
-    this.getImages();
     this.resultService.getVrtResult().subscribe(response => {
       console.log('results->', response);
       if (response){
