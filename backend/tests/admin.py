@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Framework, RandomTest, TestStrategy, End2End, Browser, Reports, BDDTest, \
-    AndroidVersion, MobileTest, MobileRandomTest, VRTTest
+    AndroidVersion, MobileTest, MobileRandomTest, VRTTest, VRTReports
 
 
 # Register your models here.
@@ -114,5 +114,5 @@ class MobileRandomTestAdmin(admin.ModelAdmin):
 
 
 admin.site.register(MobileRandomTest, MobileRandomTestAdmin)
-models = [Browser, AndroidVersion]
+models = [Browser, AndroidVersion, VRTReports]
 admin.site.register(models)
