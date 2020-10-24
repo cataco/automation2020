@@ -8,8 +8,9 @@ from backend.celery import app
 import os
 import subprocess
 import glob
+from django.core.files import File
 
-from tests.models import Reports, TestRequest
+from tests.models import Reports, WebTest, VRTReports
 from appium import webdriver
 
 @app.task()
@@ -18,7 +19,7 @@ def run_e2e_test(file_name: str, test_id):
         subprocess.run(["cp", "medias/" + file_name, "../cypress/cypress/integration"])
         os.chdir('/srv/www/backend/cypress')
         command_list = ["npx", "cypress", "run", "--spec"]
-        test = TestRequest.objects.get(pk=test_id)
+        test = WebTest.objects.get(pk=test_id)
         test_file = file_name.split("/")[-1]
         if "zip" in file_name:
             subprocess.run(["unzip", file_name])
@@ -35,13 +36,13 @@ def run_bdd_test(feature_file_name: str, steps_file_name: str, test_id):
     subprocess.run(["cp", "medias/" + steps_file_name, "../cypress_feature/cypress/integration" + steps_file_name])
     command_list = ["npx", "cypress", "run", "--spec",
                     'cypress/integration/' + feature_file_name.split('/')[-1], "--reporter", "mochawesome"]
-    test = TestRequest.objects.get(pk=test_id)
+    test = WebTest.objects.get(pk=test_id)
     return execute_test(command_list, test, 'cypress_feature')
 
 
 @app.task()
 def run_random_test(event_number: int, url: str, test_id):
-    test = TestRequest.objects.get(pk=test_id)
+    test = WebTest.objects.get(pk=test_id)
     command_list = ["npx", "cypress", "run", "--spec", "cypress/integration/ripper/cypressRandomTesting.spec.js",
                     "--reporter", "mochawesome", "--env", "url={},events={}".format(url, event_number)]
     return execute_test(command_list, test)
@@ -114,12 +115,14 @@ def run_test_random_mobile_task(folder_name, apk, package, instance_id, device_v
 @app.task()
 def run_vrt_test(file_name: str, test_id):
     try:
-        subprocess.run(["cp", "medias/vrt/" + file_name, "../cypress/cypress/integration"])
+        subprocess.run(["cp", "medias/" + file_name, "../cypress/cypress/integration"])
+        os.chdir('/srv/www/backend/cypress/cypress/integration')
+        subprocess.run(["unzip", file_name.split("/")[-1]])
         os.chdir('/srv/www/backend/cypress')
-        test = TestRequest.objects.get(pk=test_id)
-        command_list = ["npx", "cypress", "run", "--spec", 'cypress/integration/' + file_name.split('/')[-1],
+        command_list = ["npx", "cypress", "run", "--spec", 'cypress/integration/' + file_name.split('/')[-1].split('.')[0] + "/*.js",
                         "--reporter", "mochawesome"]
-        return execute_vrt_test(command_list, test)
+        test = WebTest.objects.get(id=test_id)
+        return execute_vrt_test(command_list, test, file_name)
     except Exception as e:
         raise e
 
@@ -131,10 +134,17 @@ def execute_vrt_test(command_list, test, cypress_type:str = 'cypress'):
     command_list.append(test.browser.name)
     os.chdir('/srv/www/backend/{}'.format(cypress_type))
     print(command_list)
-    run_test = subprocess.run(command_list, capture_output=True)
-    image1, image2 = (* glob.glob('screenshot*'),)
-    image1 = open('/srv/www/backend/{}/cypress/vrt/{}'.format(cypress_type, image1), 'rb')
-    image2 = open('/srv/www/backend/{}/cypress/vrt/{}'.format(cypress_type, image2), 'rb')
-    VRTReports.objects.create(test=test, image1=image1, image2=image2)
-    subprocess.run(["rm", "-rf", "../cypress/cypress/vrt"])
+    
+    run_test = subprocess.run(command_list, capture_output=True) 
+    file_name = file_name.split('/')[1]
+    os.chdir('/srv/www/backend/cypress/{}/screenshots'.format(cypress_type))
+    image1, image2 = (* glob.glob('**/*.png', recursive=True),)    
+    os.system("mv {} image1.png".format(image1))
+    os.system("mv {} image2.png".format(image2))
+    image1 = open('/srv/www/backend/{}/cypress/screenshots/image1.png'.format(cypress_type  ), 'rb')
+    image2 = open('/srv/www/backend/{}/cypress/screenshots/image2.png'.format(cypress_type), 'rb')
+    VRTReports.objects.create(test=test, image1=File(image1), image2=File(image2))
+    os.chdir('/srv/www/backend/cypress')
+    subprocess.run(["rm", "-rf", "../cypress/cypress/results"])
+    subprocess.run(["rm", "-rf", "../cypress/cypress/screenshots"])
     return run_test
