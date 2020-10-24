@@ -25,12 +25,13 @@ services:
     depends_on:
       - database
       - rabbit
+      - selenium_hub
     volumes:
       - medias:/srv/www/backend/backend/medias
   # django celery ---------------------------------------------------------------------
   celery:
     ipc: host
-    shm_size: 1024M
+    shm_size: 2gb
     image: "backend-${ENVIRONMENT}-${CURRENT_BRANCH}-${COMMIT_HASH}"
     container_name: "backend-${ENVIRONMENT}-celery"
     environment:
@@ -46,6 +47,9 @@ services:
       - "SENDGRID_API_KEY=${SENDGRID_API_KEY}"
       - "SELENIUM_PORT=${SELENIUM_PORT}"
       - "environment_id=${environment_id}"
+      - "ANDROID_PORT_2=${ANDROID_PORT_2}"
+      - "ANDROID_PORT_4=${ANDROID_PORT_4}"
+      - "ANDROID_PORT_6=${ANDROID_PORT_6}"
 
     ports:
       - "${CELERY_IP}:${CELERY_HTTP_PORT}:80"
