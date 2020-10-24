@@ -64,7 +64,7 @@ class Reports(models.Model):
     createdAt = models.DateTimeField(
         auto_now_add=True, verbose_name='creation_date')
     test = models.ForeignKey(TestRequest, on_delete=models.CASCADE, null=True)
-    testResults = models.TextField(max_length=1000, null=True, blank=True)
+    testResults = models.TextField(max_length=3000, null=True, blank=True)
 
 def set_vrt_report_path(instance, filename):
     return 'vrt-reports/{}/{}/{}'.format(instance.test.name, instance.test.id, filename)
@@ -128,7 +128,7 @@ def run_test_bdd_task(sender, instance, **kwargs):
 
 # ------------- VRT ------------------
 def set_vrt_path(instance, filename):
-    return 'vrt/{}/{}'.format(instance.framework.name.lower(), filename)
+    return 'vrt/{}/{}'.format(instance.framework.name, filename)
 
 
 class VRTTest(WebTest):
@@ -136,10 +136,10 @@ class VRTTest(WebTest):
     url2 = models.URLField(max_length=250)
     sripts = models.FileField(upload_to=set_vrt_path, validators=[FileExtensionValidator(allowed_extensions=['js', 'zip'])])
 
-@receiver(post_save, sender=BDDTest)
+@receiver(post_save, sender=VRTTest)
 def run_vrt_test_task(sender, instance, **kwargs):
     from tests.tasks import run_vrt_test
-    run_vrt_test.delay(instance.sripts, instance.pk)
+    run_vrt_test.delay(instance.sripts.name, instance.pk)
 
 
 # --------------- Mobile ---------------------
