@@ -124,7 +124,7 @@ def run_vrt_test(file_name: str, test_id):
         command_list = ['npx', 'cypress', 'run', '--spec', 'cypress/integration/' + file_name.split('/')[-1].split('.')[0] + '/*.js',
                         '--reporter', 'mochawesome']
         test = WebTest.objects.get(id=test_id)
-        return execute_vrt_test(command_list, test, file_name)
+        return execute_vrt_test(command_list, test)
     except Exception as e:
         raise e
 
@@ -136,11 +136,12 @@ def execute_vrt_test(command_list, test, cypress_type:str = 'cypress'):
     command_list.append(test.browser.name)
     os.chdir('/srv/www/backend/{}'.format(cypress_type))
     print(command_list)
-    run_test = subprocess.run(command_list, capture_output=True)
+    run_test = subprocess.run(command_list, capture_output=True)    
     os.chdir('/srv/www/backend/cypress/{}/screenshots'.format(cypress_type))
-    image1, image2 = (* glob.glob('**/*.png', recursive=True),)
-    os.system('mv {} image1.png'.format(image1))
-    os.system('mv {} image2.png'.format(image2))
+    images = glob.glob('**/*.png', recursive=True)
+    images = [image for image in images if 'screenshot' in image]
+    os.system("mv {} image1.png".format(images[0]))
+    os.system("mv {} image2.png".format(images[1]))
     image1 = open('/srv/www/backend/{}/cypress/screenshots/image1.png'.format(cypress_type  ), 'rb')
     image2 = open('/srv/www/backend/{}/cypress/screenshots/image2.png'.format(cypress_type), 'rb')
     VRTReports.objects.create(test=test, image1=File(image1), image2=File(image2))

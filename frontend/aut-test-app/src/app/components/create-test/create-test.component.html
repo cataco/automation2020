@@ -24,7 +24,7 @@
 
         <mat-form-field>
           <mat-label>Browser</mat-label>
-          <mat-select formControlName="framework">
+          <mat-select formControlName="browser">
             <mat-option *ngFor="let browser of browsers" [value]="browser.id" >
               {{browser.name}}
             </mat-option>
@@ -33,7 +33,7 @@
 
         <mat-form-field>
           <mat-label>Framework</mat-label>
-          <mat-select formControlName="browser">
+          <mat-select formControlName="framework">
             <mat-option *ngFor="let framework of frameworks" [value]="framework.id" >
               {{framework.name}}
             </mat-option>
