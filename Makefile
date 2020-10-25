@@ -40,3 +40,9 @@ clear-environment-containers:
 	docker stop backend-$(environment)-celery && docker rm backend-$(environment)-celery || true
 	docker stop rabbit-$(environment) && docker rm rabbit-$(environment) || true
 	docker stop backend-$(environment)-flower && docker rm backend-$(environment)-flower || true
+	docker stop postgres-$(environment) && docker rm postgres-$(environment) || true
+	docker stop backend-$(environment)_selenium_hub_1  && docker rm backend-$(environment)_selenium_hub_1  || true
+	docker stop backend-$(environment)_samsung_galaxy_web_7.1.1_1  && docker rm backend-$(environment)_samsung_galaxy_web_7.1.1_1  || true
+	docker stop backend-$(environment)_real_device_1   && docker rm backend-$(environment)_real_device_1   || true
+	docker stop backend-$(environment)_samsung_galaxy_web_5.1.1_1   && docker rm backend-$(environment)_samsung_galaxy_web_5.1.1_1  || true
+	docker stop backend-$(environment)_nexus_7.1.1_1     && docker rm backend-$(environment)_nexus_7.1.1_1   || true
