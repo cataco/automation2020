@@ -10,7 +10,7 @@ export class ResultService {
 
   // tslint:disable-next-line:typedef
   getReportResult() {
-    return this.httpService.getRequestWithoutPar('report').map(
+    return this.httpService.getRequestWithoutPar('reports').map(
       response => {
         return response;
       }, error => {
@@ -21,7 +21,7 @@ export class ResultService {
 
   // tslint:disable-next-line:typedef
   getVrtResult() {
-    return this.httpService.getRequestWithoutPar('vrt-reports/').map(
+    return this.httpService.getRequestWithoutPar('vrt-reports').map(
       response => {
         return response;
       }, error => {
