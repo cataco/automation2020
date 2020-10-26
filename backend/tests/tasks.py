@@ -82,7 +82,7 @@ def run_test_e2e_mobile_task(folder_name, apk, scripts, test, device):
 
 @app.task()
 def run_test_random_mobile_task(folder_name, apk, package_name, activity_name,
-                                instance_id, device_version, number_of_events, device_name):
+                                test, device_version, number_of_events, device_name):
     sleep(10)
     os.system('adb connect {}:{}'.format(os.environ.get('environment_id'),
                                          os.environ.get('ANDROID_PORT_{}'.format(device_version))))
@@ -109,7 +109,9 @@ def run_test_random_mobile_task(folder_name, apk, package_name, activity_name,
     except:
         pass
     sleep(10)
-    os.system('adb shell monkey -p {} -v {}'.format(package_name, number_of_events))
+    run_test = subprocess.run(['adb', 'shell', 'monkey', '-p', package_name, '-v', number_of_events],
+                              capture_output=True)
+    Reports.objects.create(test_id=test, testResults=run_test)
     os.system('adb disconnect {}:{}'.format(os.environ.get('environment_id'),
                                             os.environ.get('ANDROID_PORT_{}'.format(device_version))))
 
