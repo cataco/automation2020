@@ -4,13 +4,8 @@
 
 export const environment = {
   production: false,
-<<<<<<< HEAD
   //urlBack: 'http://ocalhost:8000/api/test/'
-  urlBack: 'http://localhost:3000/'
-=======
-  //urlBack: 'http://ec2-54-208-180-208.compute-1.amazonaws.com:8000/api/test/'
-  urlBack: 'http://0.0.0.0:8000/api/test/'
->>>>>>> dc622adb3f32ca8d77f8c5ac998175e56bc43897
+  urlBack: 'http://0.0.0.0:8000/'
 };
 
 /*
