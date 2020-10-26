@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   //urlBack: 'http://ocalhost:8000/api/test/'
-  urlBack: 'http://0.0.0.0:8000/'
+  urlBack: 'http://0.0.0.0:8000/api/test/'
 };
 
 /*

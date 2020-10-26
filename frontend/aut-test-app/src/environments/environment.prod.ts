@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlBack: 'http://ocalhost:8000/api/test/'
+  urlBack: 'http://0.0.0.0:8000/api/test/'
 };
