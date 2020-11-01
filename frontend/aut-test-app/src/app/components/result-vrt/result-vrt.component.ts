@@ -56,8 +56,9 @@ export class ResultVrtComponent implements OnInit {
     const report = this.getImages(id);
     const diff = resemble(report.imagen1)
       .compareTo(report.imagen2).onComplete(this.getDiff);
-    report.diferencia = sessionStorage.getItem('result');
-    report.resultado = sessionStorage.getItem('imagen');
+    report.diferencia = localStorage.getItem('result');
+    report.resultado = localStorage.getItem('imagen');
+    localStorage.clear();
   }
 
   // tslint:disable-next-line:typedef
@@ -68,9 +69,8 @@ export class ResultVrtComponent implements OnInit {
 // tslint:disable-next-line:typedef
 getDiff(data){
   console.log(data);
-  sessionStorage.setItem('result', JSON.stringify(data.misMatchPercentage));
-  sessionStorage.setItem('imagen', data.getImageDataUrl());
+  localStorage.setItem('result', JSON.stringify(data.misMatchPercentage));
+  localStorage.setItem('imagen', data.getImageDataUrl());
 }
-
 
 }

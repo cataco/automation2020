@@ -67,8 +67,14 @@ class Reports(models.Model):
     testResults = models.TextField(max_length=3000, null=True, blank=True)
 
 def set_vrt_report_path(instance, filename):
-    return 'vrt-reports/{}/{}/{}'.format(instance.test.name, instance.test.id, filename)
+    return 'screenshots/{}/{}/{}'.format(instance.test.name, instance.test.id, filename)
 
+
+class ImageReports(models.Model):
+    createdAt = models.DateTimeField(
+        auto_now_add=True, verbose_name='creation_date')
+    report = models.ForeignKey(Reports, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(upload_to=set_vrt_report_path)
 
 class VRTReports(Reports):
     image1 = models.ImageField(upload_to=set_vrt_report_path)

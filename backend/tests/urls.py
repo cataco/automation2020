@@ -4,7 +4,7 @@ from rest_framework import routers
 
 from tests.views import ReportsViewSet, TestStrategyView, End2EndView, RandomTestView, BDDTestView,\
     MobileTestView, VRTTestView, FrameworkView, BrowserView, AndroidVersionView, MobileRandomTestView,\
-        VRTReportsView
+        ImageReportsView
 
 router = routers.DefaultRouter()
 router.register(r'vrt-reports', VRTReportsView)
@@ -17,7 +17,8 @@ urlpatterns = [
     path('bdd-tests', BDDTestView.as_view(), name='bdd-tests'),
     path('mobile-tests', MobileTestView.as_view(), name='mobile-tests'),
     path('mobile-random-tests', MobileRandomTestView.as_view(), name='mobile-random-tests'),
-    path('vrt-tests', VRTTestView.as_view(), name='vrt-tests'),
+    path('image-reports', ImageReportsView.as_view(), name='image-reports'),
+    path('image-reports/report/<int:report_pk>', ImageReportsView.as_view({'get': 'get_images'}), name='images-by-reports'),
     path('frameworks', FrameworkView.as_view(), name='framewroks'),
     path('browsers', BrowserView.as_view(), name='browsers'),
     path('android-versions', AndroidVersionView.as_view(), name='android-versions'),
