@@ -11,7 +11,7 @@ import subprocess
 import glob
 from django.core.files import File
 
-from tests.models import Reports, WebTest, VRTReports
+from tests.models import Reports, WebTest, VRTReports, ImageReports
 from appium import webdriver
 
 
@@ -59,8 +59,15 @@ def execute_test(command_list, test, cypress_type: str = 'cypress'):
     print(command_list)
     run_test = subprocess.run(command_list, capture_output=True)
     json_response = open('/srv/www/backend/{}/cypress/results/mochawesome.json'.format(cypress_type), 'r')
-    Reports.objects.create(test=test, testResults=json_response.read())
+    report = Reports.objects.create(test=test, testResults=json_response.read())
+    os.chdir('/srv/www/backend/cypress/{}/screenshots'.format(cypress_type))
+    images = glob.glob('**/*.png', recursive=True)
+    for image in images:
+        image1 = open(image, 'rb')
+        ImageReports.objects.create(report=report, image=File(image1))
+    os.chdir('/srv/www/backend/cypress')
     subprocess.run(['rm', '-rf', '../cypress/cypress/results'])
+    subprocess.run(['rm', '-rf', '../cypress/cypress/screenshots'])
     return run_test
 
 
