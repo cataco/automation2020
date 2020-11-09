@@ -14,6 +14,7 @@ export class HttpService {
   constructor(protected http: HttpClient) { }
 
   baseUrl = environment.urlBack;
+  rootUrl = environment.urlRoot;
 
   postJSON(url, data): Observable<HttpResponse<string>> {
     const httpHeaders = new HttpHeaders({
@@ -33,6 +34,10 @@ export class HttpService {
 
   getRequestWithoutPar(url): Observable<any> {
     return this.http.get(this.baseUrl + url );
+  }
+
+  getRequestWithoutParRoot(url): Observable<any> {
+    return this.http.get(this.rootUrl + url );
   }
 
   listParams(data) {

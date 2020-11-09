@@ -20,8 +20,8 @@ export class ResultService {
   }
 
   // tslint:disable-next-line:typedef
-  getVrtResult() {
-    return this.httpService.getRequestWithoutPar('vrt-reports').map(
+  getVrtImages(id) {
+    return this.httpService.getRequestWithoutParRoot('image-reports/report/' + id).map(
       response => {
         return response;
       }, error => {

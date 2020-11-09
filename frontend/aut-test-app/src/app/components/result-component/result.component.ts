@@ -1,7 +1,5 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { TestScheduler } from 'rxjs-compat';
-import { letProto } from 'rxjs-compat/operator/let';
 import { ResultService } from '../../services/result-service/result-service.service';
 
 @Component({
@@ -32,7 +30,6 @@ export class ResultComponent implements OnInit {
         this.getMovilReport();
         this.reports.forEach(element => {
           const reporte = JSON.parse(element.testResults);
-          console.log(reporte);
           if (reporte.results) {
             const report = {
               stats : reporte.stats,
@@ -53,7 +50,6 @@ export class ResultComponent implements OnInit {
     console.log('response=>', this.reports);
     this.reports.forEach(element => {
       const reporte = JSON.parse(element.testResults);
-      console.log('reporte =>', reporte);
       if (reporte.collectors) {
         const stats =
         {
