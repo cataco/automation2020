@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  //urlBack: 'http://ocalhost:8000/api/test/'
-  urlBack: 'http://0.0.0.0:8000/api/test/'
+  //urlBack: 'http://localhost:3000/',
+  //urlRoot: 'http://localhost:3000/'
+  urlBack: 'http://0.0.0.0:8000/api/test/',
+  urlRoot: 'http://0.0.0.0:8000/'
 };
 
 /*

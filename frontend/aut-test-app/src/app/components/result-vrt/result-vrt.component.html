@@ -1,29 +1,31 @@
-
 <div class="card text-center m-3">
-    <div class="card-body" *ngFor="let report of reports, let i=index;">
-      <div class="flex-grid">
-        <div class="col">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title> Reporte: {{report.test}}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <div>% de diferencia :{{report.diferencia}}</div>
-                <div>
-                    <img style="width: 50%; height: 50%;" src="{{report.imagen1}}">
-                    <img style="width: 50%; height: 50%;" src="{{report.imagen2}}">
-                </div>
-                <div>
-                    <img style="width: 50%; height: 50%;" src="{{report.resultado}}">
-                </div>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-raised-button style="background-color: #1a731a; color: white  " (click)="generateResemble(report.id)">
-                Generar comparasion
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-      </div>
+  <form [formGroup]="reportForm">
+    <mat-form-field style="margin-right: 50px;">
+      <mat-label>Reporte Base</mat-label>
+      <mat-select formControlName="reportBase"  (selectionChange)="getImageReportBase($event)">
+        <mat-option *ngFor="let repo of reportsBase" [value]="repo.id">
+          {{repo.id}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Reporte Modificado</mat-label>
+      <mat-select formControlName="reportModif" (selectionChange)="getImageReportDiff($event)">
+        <mat-option *ngFor="let repo of reportsDiff" [value]="repo.id">
+          {{repo.id}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <div>
+    <div style="width: 25%;" *ngFor="let image of imagesBase">
+      <img style="width: 200px; height: 200px;" src="{{image}}">
+    </div>
+    <div style="width: 25%;" *ngFor="let image of imagesDiff">
+      <img style="width: 200px; height: 200px;" src="{{image}}">
+    </div>
+    <div style="width: 25%;" *ngFor="let result of imagesCompare">
+      <img style="width: 200px; height: 200px;" src="{{result.image}}">
     </div>
   </div>
+</div>
