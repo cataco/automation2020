@@ -67,7 +67,7 @@ class Reports(models.Model):
     testResults = models.TextField(max_length=3000, null=True, blank=True)
 
 def set_vrt_report_path(instance, filename):
-    return 'screenshots/{}/{}/{}'.format(instance.test.name, instance.test.id, filename)
+    return 'screenshots/{}/{}/{}'.format(instance.report.test.name, instance.report.id, filename)
 
 
 class ImageReports(models.Model):
