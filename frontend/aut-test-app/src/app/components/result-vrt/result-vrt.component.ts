@@ -53,7 +53,7 @@ export class ResultVrtComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  generateResemble(id) {
+  generateResemble() {
     let index = 0;
     this.imagesBase.forEach(report => {
     const result = new Resulta();
