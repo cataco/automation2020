@@ -16,16 +16,18 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <button style="margin-left: 50px;" mat-raised-button color="primary" (click)="generateResemble()">Comparar</button>
   </form>
-  <div>
-    <div style="width: 25%;" *ngFor="let image of imagesBase">
-      <img style="width: 200px; height: 200px;" src="{{image}}">
+  <div style="width: 100%;">
+    <div style="width: 25%; display:contents; " *ngFor="let image of imagesBase">
+      <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{image}}">
     </div>
-    <div style="width: 25%;" *ngFor="let image of imagesDiff">
-      <img style="width: 200px; height: 200px;" src="{{image}}">
+    <div style="width: 25%; display:contents;" *ngFor="let image of imagesDiff">
+      <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{image}}">
     </div>
-    <div style="width: 25%;" *ngFor="let result of imagesCompare">
-      <img style="width: 200px; height: 200px;" src="{{result.image}}">
+    <div style="width: 25%; display:contents; margin-right: 20px;" *ngFor="let result of imagesCompare">
+      <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{result.image}}">
+      % Diferencia: {{result.diferencia}}
     </div>
   </div>
 </div>

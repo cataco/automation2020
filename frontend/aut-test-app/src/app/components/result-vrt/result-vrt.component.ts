@@ -22,8 +22,8 @@ export class ResultVrtComponent implements OnInit {
   reportsDiff: Array<any> = [];
   reportForm: FormGroup;
   // reports = [];
-  imagesBase: string[];
-  imagesDiff: string[];
+  imagesBase: Array<string> = [];
+  imagesDiff: Array<string> = [];
   imagesCompare: Array<Resulta> = [];
 
 
@@ -53,7 +53,8 @@ export class ResultVrtComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  generateResemble(id) {
+  generateResemble() {
+    this.imagesCompare = [];
     let index = 0;
     this.imagesBase.forEach(report => {
     const result = new Resulta();
@@ -91,7 +92,7 @@ export class ResultVrtComponent implements OnInit {
     this.resultService.getVrtImages(id).subscribe(response => {
       if (response) {
         response.forEach(dataItem => {
-          this.imagesBase.push(dataItem.image);
+        this.imagesBase.push(dataItem.image);
         });
       }
     });
