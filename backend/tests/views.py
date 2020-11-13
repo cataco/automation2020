@@ -5,6 +5,7 @@ from rest_framework.generics import ListAPIView, ListCreateAPIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
 
 from tests.models import Reports, TestStrategy, End2End, RandomTest, BDDTest, MobileTest, VRTTest, Framework,\
     Browser, AndroidVersion, MobileRandomTest, ImageReports
@@ -61,7 +62,9 @@ class ImageReportsView(ListAPIView):
     queryset = ImageReports.objects.all()
     serializer_class = ImageReportsSerializer
 
-    def get_images(self, report_pk=None):
-        images = ImageReports.objects.filter(report=reports_pk)
-        serializer = ImageReportsSerializer(images, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_images(self, report_pk=None):
+    images = ImageReports.objects.filter(report=report_pk)
+    serializer = ImageReportsSerializer(images, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
