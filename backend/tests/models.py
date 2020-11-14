@@ -64,11 +64,17 @@ class Reports(models.Model):
     createdAt = models.DateTimeField(
         auto_now_add=True, verbose_name='creation_date')
     test = models.ForeignKey(TestRequest, on_delete=models.CASCADE, null=True)
-    testResults = models.TextField(max_length=1000, null=True, blank=True)
+    testResults = models.TextField(max_length=3000, null=True, blank=True)
 
 def set_vrt_report_path(instance, filename):
-    return 'vrt-reports/{}/{}/{}'.format(instance.test.name, instance.test.id, filename)
+    return 'screenshots/{}/{}/{}'.format(instance.report.test.name, instance.report.id, filename)
 
+
+class ImageReports(models.Model):
+    createdAt = models.DateTimeField(
+        auto_now_add=True, verbose_name='creation_date')
+    report = models.ForeignKey(Reports, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(upload_to=set_vrt_report_path)
 
 class VRTReports(Reports):
     image1 = models.ImageField(upload_to=set_vrt_report_path)
@@ -128,7 +134,7 @@ def run_test_bdd_task(sender, instance, **kwargs):
 
 # ------------- VRT ------------------
 def set_vrt_path(instance, filename):
-    return 'vrt/{}/{}'.format(instance.framework.name.lower(), filename)
+    return 'vrt/{}/{}'.format(instance.framework.name, filename)
 
 
 class VRTTest(WebTest):
@@ -136,10 +142,10 @@ class VRTTest(WebTest):
     url2 = models.URLField(max_length=250)
     sripts = models.FileField(upload_to=set_vrt_path, validators=[FileExtensionValidator(allowed_extensions=['js', 'zip'])])
 
-@receiver(post_save, sender=BDDTest)
+@receiver(post_save, sender=VRTTest)
 def run_vrt_test_task(sender, instance, **kwargs):
     from tests.tasks import run_vrt_test
-    run_vrt_test.delay(instance.sripts, instance.pk)
+    run_vrt_test.delay(instance.sripts.name, instance.pk)
 
 
 # --------------- Mobile ---------------------
@@ -178,7 +184,8 @@ class MobileRandomTest(TestRequest):
     appApk = models.FileField(upload_to=seth_apk_path, validators=[FileExtensionValidator(
         allowed_extensions=['apk'])])
     eventsNumber = models.IntegerField()
-    packageName = models.CharField(max_length=255)
+    packageName = models.CharField(max_length=1000)
+    ActivityName = models.CharField(max_length=1000)
 
     def __str__(self):
         return str(self.name) + ' - ' + str(self.appName) + ' -- ' + str(self.createdAt)
@@ -188,6 +195,9 @@ class MobileRandomTest(TestRequest):
 def run_test_random_mobile_task(sender, instance, **kwargs):
     from tests.tasks import run_test_random_mobile_task
     run_test_random_mobile_task.delay(instance.name, instance.appApk.name.split("/")[-1],
-                                      instance.packageName, instance.pk,
-                                      instance.androidVersion.versionNumber, instance.eventsNumber,
+                                      instance.packageName,
+                                      instance.ActivityName,
+                                      instance.pk,
+                                      instance.androidVersion.versionNumber,
+                                      instance.eventsNumber,
                                       instance.androidVersion.versionName)

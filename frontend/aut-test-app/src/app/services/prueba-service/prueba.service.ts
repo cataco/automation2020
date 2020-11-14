@@ -23,7 +23,7 @@ export class PruebaService {
     formData.append('framework', '1');
     formData.append('browser', '1');
     //let headers = new HttpHeaders({'Authorization': 'Token ' + this.token});
-    return this.http.post('http://localhost:8000/api/test/end2end-tests', formData, {
+    return this.http.post('http://0.0.0.0:8000/api/test/end2end-tests', formData, {
       //'headers': headers, reportProgress: true,
       observe: 'events'
     });
@@ -38,24 +38,24 @@ export class PruebaService {
     formData.append('appApk', form.get('appApk').value);
     formData.append('scripts', form.get('testScript').value);
     formData.append('androidVersion', form.get('androidVersion').value);
-    return this.http.post('http://127.0.0.1:8000/api/test/mobile-tests', formData, {
+    return this.http.post('http://0.0.0.0:8000/api/test/mobile-tests', formData, {
       //'headers': headers, reportProgress: true,
       observe: 'events'
     });
   }
 
   getFrameworks(): Observable<any> {
-     return this.http.get( 'http://127.0.0.1:8000/api/test/frameworks');
+     return this.http.get( 'http://0.0.0.0:8000/api/test/frameworks');
   }
    getBrowsers(): Observable<any> {
-     return this.http.get( 'http://127.0.0.1:8000/api/test/browsers');
+     return this.http.get( 'http://0.0.0.0:8000/api/test/browsers');
   }
 
     getStrategies(): Observable<any> {
-     return this.http.get( 'http://127.0.0.1:8000/api/test/strategies');
+     return this.http.get( 'http://0.0.0.0:8000/api/test/strategies');
   }
     getAndroidVer(): Observable<any> {
-     return this.http.get( 'http://127.0.0.1:8000/api/test/android-versions');
+     return this.http.get( 'http://0.0.0.0:8000/api/test/android-versions');
   }
 
 
@@ -69,7 +69,7 @@ export class PruebaService {
     formData.append('eventsNumber', form.get('eventsNumber').value);
     formData.append('packageName', form.get('packageName').value);
     formData.append('androidVersion', form.get('androidVersion').value);
-    return this.http.post('http://127.0.0.1:8000/api/test/mobile-random-tests', formData, {
+    return this.http.post('http://0.0.0.0:8000/api/test/mobile-random-tests', formData, {
       //'headers': headers, reportProgress: true,
       observe: 'events'
     });
@@ -88,7 +88,7 @@ export class PruebaService {
     formData.append('framework', form.get('framework').value);
     formData.append('browser', form.get('browser').value);
     formData.append('sripts', form.get('sripts').value);
-    return this.http.post('http://127.0.0.1:8000/api/test/vrt-tests', formData, {
+    return this.http.post('http://0.0.0.0:8000/api/test/vrt-tests', formData, {
       //'headers': headers, reportProgress: true,
       observe: 'events'
     });
@@ -107,7 +107,7 @@ export class PruebaService {
     formData.append('stepsScript', form.get('stepsScript').value);
     formData.append('framework', '1');
     formData.append('browser', '1');
-    return this.http.post('http://localhost:8000/api/test/bdd-tests', formData, {
+    return this.http.post('http://0.0.0.0:8000/api/test/bdd-tests', formData, {
       observe: 'events'
     });
   }

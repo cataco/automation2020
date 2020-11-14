@@ -1,2 +1,45 @@
-<div>% de diferencia :{{diferencia}}</div>
-<img style="width: 50%; height: 50%;" src="{{imagen}}">
+<div class="card text-center m-3">
+  <form [formGroup]="reportForm">
+    <mat-form-field style="margin-right: 50px;">
+      <mat-label>Reporte Base</mat-label>
+      <mat-select formControlName="reportBase"  (selectionChange)="getImageReportBase($event)">
+        <mat-option *ngFor="let repo of reportsBase" [value]="repo.id">
+          {{repo.id}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Reporte Modificado</mat-label>
+      <mat-select formControlName="reportModif" (selectionChange)="getImageReportDiff($event)">
+        <mat-option *ngFor="let repo of reportsDiff" [value]="repo.id">
+          {{repo.id}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button style="margin-left: 50px;" mat-raised-button color="primary" *ngIf="!showImages" [disabled]="!(imagesBase.length > 0 && imagesDiff.length > 0)" (click)="generateResemble()">Comparar</button>
+    <button style="margin-left: 50px;" mat-raised-button color="warn" *ngIf="showImages" (click)="showDiff()">Mostrar Diferencias</button>
+  </form>
+  <div class="row">
+    <div class="col-4">
+      <div *ngFor="let image of imagesBase">
+        <br>
+        <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{image}}">
+        <br> <br> <br>
+      </div>
+    </div>
+    <div class="col-4">
+      <div *ngFor="let imageDiff of imagesDiff">
+       <br>
+        <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{imageDiff}}">
+        <br> <br> <br>
+      </div>
+    </div>
+    <div class="col-4">
+      <div *ngFor="let result of imagesCompare">
+        % Diferencia: {{result.diferencia}}<br>
+        <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{result.image}}">
+        <br> <br> <br>
+      </div>
+    </div>
+  </div>
+</div>
