@@ -21,11 +21,11 @@ def run_e2e_test(file_name: str, test_id):
         subprocess.run(['cp', 'medias/' + file_name, '../cypress/cypress/integration'])
         command_list = ['npx', 'cypress', 'run', '--spec']
         test = WebTest.objects.get(pk=test_id)
-        test_file = file_name.split('/')[-1]
+        test_file = 'cypress/integration/' + file_name.split('/')[-1]
         if 'zip' in file_name:
             os.chdir('/srv/www/backend/cypress/cypress/integration')
             subprocess.run(['unzip', file_name])
-            test_file = 'cypress/integration/' + test_file.split('.')[0] + '/*.js'
+            test_file = test_file.split('.')[0] + '/*.js'
         command_list.extend([test_file, '--reporter', 'mochawesome'])
         return execute_test(command_list, test)
     except Exception as e:
@@ -116,9 +116,7 @@ def run_test_random_mobile_task(folder_name, apk, package_name, activity_name,
     except:
         pass
     sleep(10)
-    run_test = subprocess.run(['adb', 'shell', 'monkey', '-p', package_name, '-v', number_of_events],
-                              capture_output=True)
-    Reports.objects.create(test_id=test, testResults=run_test)
+    os.system('adb shell monkey -p {} -v {}'.format(package_name, number_of_events))
     os.system('adb disconnect {}:{}'.format(os.environ.get('environment_id'),
                                             os.environ.get('ANDROID_PORT_{}'.format(device_version))))
 
