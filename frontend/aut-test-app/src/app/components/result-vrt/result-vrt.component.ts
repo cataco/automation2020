@@ -3,6 +3,7 @@ import * as resemble from 'resemblejs';
 import { ResultService } from '../../services/result-service/result-service.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { element } from 'protractor';
+import { environment } from 'src/environments/environment';
 
 class Resulta {
   image: any;
@@ -27,6 +28,7 @@ export class ResultVrtComponent implements OnInit {
   imagesCompare: Array<Resulta> = [];
   index = 0;
   showImages = false;
+  url = environment.urlRoot;
 
 
 
@@ -105,7 +107,7 @@ export class ResultVrtComponent implements OnInit {
       console.log(response);
       if (response.length > 0) {
         response.forEach(dataItem => {
-        this.imagesBase.push(dataItem.image);
+        this.imagesBase.push(this.url + dataItem.image);
         });
       }else{
         alert('Imagenes no encontradas');
@@ -136,7 +138,7 @@ export class ResultVrtComponent implements OnInit {
     this.resultService.getVrtImages(id).subscribe(response => {
       if (response.length > 0) {
         response.forEach(dataItem => {
-          this.imagesDiff.push(dataItem.image);
+          this.imagesDiff.push(this.url + dataItem.image);
         });
       }else{
         alert('Imagenes no encontradas');
