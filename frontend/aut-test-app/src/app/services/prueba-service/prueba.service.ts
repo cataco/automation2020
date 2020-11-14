@@ -20,8 +20,8 @@ export class PruebaService {
     formData.append('name', form.get('name').value);
     formData.append('strategy', form.get('strategy').value);
     formData.append('testScript', form.get('testScript').value);
-    formData.append('framework', '1');
-    formData.append('browser', '1');
+    formData.append('framework', form.get('framework').value);
+    formData.append('browser', form.get('browser').value);
     //let headers = new HttpHeaders({'Authorization': 'Token ' + this.token});
     return this.http.post('http://0.0.0.0:8000/api/test/end2end-tests', formData, {
       //'headers': headers, reportProgress: true,
@@ -70,7 +70,6 @@ export class PruebaService {
     formData.append('packageName', form.get('packageName').value);
     formData.append('androidVersion', form.get('androidVersion').value);
     return this.http.post('http://0.0.0.0:8000/api/test/mobile-random-tests', formData, {
-      //'headers': headers, reportProgress: true,
       observe: 'events'
     });
   }
@@ -89,7 +88,6 @@ export class PruebaService {
     formData.append('browser', form.get('browser').value);
     formData.append('sripts', form.get('sripts').value);
     return this.http.post('http://0.0.0.0:8000/api/test/vrt-tests', formData, {
-      //'headers': headers, reportProgress: true,
       observe: 'events'
     });
   }
@@ -97,7 +95,6 @@ export class PruebaService {
 
   saveFilesBDD(form): Observable<any> {
     const formData = new FormData();
-    //formData.append('nombre', documento.name);
     formData.append('appName', form.get('appName').value);
     formData.append('appUrl', form.get('appUrl').value);
     formData.append('appVersion', form.get('appVersion').value);
@@ -105,8 +102,8 @@ export class PruebaService {
     formData.append('strategy', form.get('strategy').value);
     formData.append('features', form.get('features').value);
     formData.append('stepsScript', form.get('stepsScript').value);
-    formData.append('framework', '1');
-    formData.append('browser', '1');
+    formData.append('framework', form.get('framework').value);
+    formData.append('browser', form.get('browser').value);
     return this.http.post('http://0.0.0.0:8000/api/test/bdd-tests', formData, {
       observe: 'events'
     });
