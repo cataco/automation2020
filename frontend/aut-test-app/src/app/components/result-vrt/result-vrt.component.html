@@ -16,7 +16,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button style="margin-left: 50px;" mat-raised-button color="primary" (click)="generateResemble()">Comparar</button>
+    <button style="margin-left: 50px;" mat-raised-button color="primary" *ngIf="!showImages" [disabled]="!(imagesBase.length > 0 && imagesDiff.length > 0)" (click)="generateResemble()">Comparar</button>
+    <button style="margin-left: 50px;" mat-raised-button color="warn" *ngIf="showImages" (click)="showDiff()">Mostrar Diferencias</button>
   </form>
   <div class="row">
     <div class="col-4">

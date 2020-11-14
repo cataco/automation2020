@@ -25,6 +25,8 @@ export class ResultVrtComponent implements OnInit {
   imagesBase: Array<string> = [];
   imagesDiff: Array<string> = [];
   imagesCompare: Array<Resulta> = [];
+  index = 0;
+  showImages = false;
 
 
 
@@ -54,29 +56,40 @@ export class ResultVrtComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   generateResemble() {
-    this.imagesCompare = [];
-    let index = 0;
+    this.showImages = true;
+    localStorage.clear();
     this.imagesBase.forEach(report => {
-    const result = new Resulta();
-    const diff = resemble(report)
-      .compareTo(this.imagesDiff[index]).onComplete(this.getDiff);
-    result.diferencia = localStorage.getItem('result');
-    result.image = localStorage.getItem('imagen');
-    this.imagesCompare.push(result);
-    index++;
+    resemble(report)
+      // tslint:disable-next-line:typedef
+      .compareTo(this.imagesDiff[this.index]).onComplete(function(data){
+        this.index = localStorage.getItem('index');
+        if (this.index == null){
+          this.index = 0;
+        }
+        localStorage.setItem('result-' + this.index, JSON.stringify(data.misMatchPercentage));
+        localStorage.setItem('imagen-' + this.index, data.getImageDataUrl());
+        this.index++;
+        localStorage.setItem('index', this.index);
+     });
     });
   }
 
   // tslint:disable-next-line:typedef
-  getDiff(data) {
-    console.log(data);
-    localStorage.setItem('result', JSON.stringify(data.misMatchPercentage));
-    localStorage.setItem('imagen', data.getImageDataUrl());
+  showDiff(){
+    this.imagesCompare = [];
+    let index = 0;
+    this.imagesBase.forEach(report => {
+      const result = new Resulta();
+      result.diferencia = localStorage.getItem('result-' + index);
+      result.image = localStorage.getItem('imagen-' + index);
+      this.imagesCompare.push(result);
+      index++;
+    });
   }
-
 
   // tslint:disable-next-line:typedef
   getImageReportBase(event) {
+    this.showImages = false;
     const id = event.value;
     // Borra todas los reportes
     this.reportsDiff = [];
@@ -89,17 +102,23 @@ export class ResultVrtComponent implements OnInit {
     const index = this.reportsAll.indexOf(this.reportsAll.filter(repo => repo.id === id)[0]);
     this.reportsDiff.splice(index, 1);
     this.resultService.getVrtImages(id).subscribe(response => {
-      if (response) {
+      console.log(response);
+      if (response.length > 0) {
         response.forEach(dataItem => {
         this.imagesBase.push(dataItem.image);
         });
+      }else{
+        alert('Imagenes no encontradas');
       }
+    }, error => {
+      alert('Imagenes no encontradas');
     });
   }
 
 
   // tslint:disable-next-line:typedef
   getImageReportDiff(event) {
+    this.showImages = false;
     const id = event.value;
 
     // Borra todas los reportes
@@ -115,11 +134,15 @@ export class ResultVrtComponent implements OnInit {
     this.reportsBase.splice(index, 1);
 
     this.resultService.getVrtImages(id).subscribe(response => {
-      if (response) {
+      if (response.length > 0) {
         response.forEach(dataItem => {
           this.imagesDiff.push(dataItem.image);
         });
+      }else{
+        alert('Imagenes no encontradas');
       }
+    }, error => {
+      alert('Imagenes no encontradas');
     });
   }
 
