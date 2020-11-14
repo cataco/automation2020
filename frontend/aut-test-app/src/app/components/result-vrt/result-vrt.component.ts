@@ -64,7 +64,6 @@ export class ResultVrtComponent implements OnInit {
     result.image = localStorage.getItem('imagen');
     this.imagesCompare.push(result);
     index++;
-    localStorage.clear();
     });
   }
 

@@ -18,16 +18,27 @@
     </mat-form-field>
     <button style="margin-left: 50px;" mat-raised-button color="primary" (click)="generateResemble()">Comparar</button>
   </form>
-  <div style="width: 100%;">
-    <div style="width: 25%; display:contents; " *ngFor="let image of imagesBase">
-      <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{image}}">
+  <div class="row">
+    <div class="col-4">
+      <div *ngFor="let image of imagesBase">
+        <br>
+        <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{image}}">
+        <br> <br> <br>
+      </div>
     </div>
-    <div style="width: 25%; display:contents;" *ngFor="let image of imagesDiff">
-      <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{image}}">
+    <div class="col-4">
+      <div *ngFor="let imageDiff of imagesDiff">
+       <br>
+        <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{imageDiff}}">
+        <br> <br> <br>
+      </div>
     </div>
-    <div style="width: 25%; display:contents; margin-right: 20px;" *ngFor="let result of imagesCompare">
-      <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{result.image}}">
-      % Diferencia: {{result.diferencia}}
+    <div class="col-4">
+      <div *ngFor="let result of imagesCompare">
+        % Diferencia: {{result.diferencia}}<br>
+        <img style="width: 200px; height: 200px; margin-right: 20px;" src="{{result.image}}">
+        <br> <br> <br>
+      </div>
     </div>
   </div>
 </div>
