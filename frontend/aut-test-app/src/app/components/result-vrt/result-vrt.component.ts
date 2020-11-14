@@ -107,7 +107,8 @@ export class ResultVrtComponent implements OnInit {
       console.log(response);
       if (response.length > 0) {
         response.forEach(dataItem => {
-        this.imagesBase.push(this.url + dataItem.image);
+          var imageRoute = dataItem.image.substring(1);
+        this.imagesBase.push(this.url + imageRoute);
         });
       }else{
         alert('Imagenes no encontradas');
@@ -138,7 +139,8 @@ export class ResultVrtComponent implements OnInit {
     this.resultService.getVrtImages(id).subscribe(response => {
       if (response.length > 0) {
         response.forEach(dataItem => {
-          this.imagesDiff.push(this.url + dataItem.image);
+          var imageRoute = dataItem.image.substring(1);
+          this.imagesDiff.push(this.url + imageRoute);
         });
       }else{
         alert('Imagenes no encontradas');
