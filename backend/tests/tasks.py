@@ -85,7 +85,15 @@ def run_test_e2e_mobile_task(folder_name, apk, scripts, test, device):
     else:
         os.system('pytest {} --json-report'.format(scripts.split('/')[-1]))
     json_response = open('.report.json', 'r')
-    Reports.objects.create(test_id=test, testResults=json_response.read())
+    report = Reports.objects.create(test_id=test, testResults=json_response.read())
+    images = glob.glob('screenshots/*.png', recursive=True)
+    for image in images:
+        image1 = open(image, 'rb')
+        ImageReports.objects.create(report=report, image=File(image1))
+    if images:
+        subprocess.run(['rm', '-rf', 'screenshots'])
+
+
 
 
 @app.task()
