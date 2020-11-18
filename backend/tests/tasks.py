@@ -18,6 +18,7 @@ from appium import webdriver
 @app.task()
 def run_e2e_test(file_name: str, test_id):
     try:
+        sleep(10)
         subprocess.run(['cp', 'medias/' + file_name, '../cypress/cypress/integration'])
         command_list = ['npx', 'cypress', 'run', '--spec']
         test = WebTest.objects.get(pk=test_id)
@@ -26,7 +27,7 @@ def run_e2e_test(file_name: str, test_id):
             os.chdir('/srv/www/backend/cypress/cypress/integration')
             subprocess.run(['unzip', file_name])
             test_file = test_file.split('.')[0] + '/*.js'
-        command_list.extend([test_file, '--reporter', 'mochawesome'])
+        command_list.extend([test_file, '--reporter', 'mochawesome'])        
         return execute_test(command_list, test)
     except Exception as e:
         raise e
