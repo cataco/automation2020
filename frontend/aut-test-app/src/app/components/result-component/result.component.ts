@@ -63,7 +63,6 @@ export class ResultComponent implements OnInit {
         let tests = Array();
         reporte.tests.forEach(element1 => {
           const test = {
-            id : element.id,
             pass: element1.outcome === 'passed' ? true : false,
             title: element1.nodeid,
             duration: (element1.setup.duration + element1.call.duration + element1.teardown.duration) * 1000,
@@ -74,7 +73,7 @@ export class ResultComponent implements OnInit {
 
         });
         const testList = tests;
-        const report = {stats, testList, testTittle: reporte.collectors[0].result[0].nodeid};
+        const report = {id : element.id, stats, testList, testTittle: reporte.collectors[0].result[0].nodeid};
         this.reportsShow.push(report);
 
       }
