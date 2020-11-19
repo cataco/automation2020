@@ -32,6 +32,7 @@ export class ResultComponent implements OnInit {
           const reporte = JSON.parse(element.testResults);
           if (reporte.results) {
             const report = {
+              id : element.id,
               stats : reporte.stats,
               testTittle: reporte.results[0].suites[0].title,
               testList: reporte.results[0].suites[0].tests
@@ -62,6 +63,7 @@ export class ResultComponent implements OnInit {
         let tests = Array();
         reporte.tests.forEach(element1 => {
           const test = {
+            id : element.id,
             pass: element1.outcome === 'passed' ? true : false,
             title: element1.nodeid,
             duration: (element1.setup.duration + element1.call.duration + element1.teardown.duration) * 1000,
