@@ -32,6 +32,7 @@ export class ResultComponent implements OnInit {
           const reporte = JSON.parse(element.testResults);
           if (reporte.results) {
             const report = {
+              id : element.id,
               stats : reporte.stats,
               testTittle: reporte.results[0].suites[0].title,
               testList: reporte.results[0].suites[0].tests
@@ -72,7 +73,7 @@ export class ResultComponent implements OnInit {
 
         });
         const testList = tests;
-        const report = {stats, testList, testTittle: reporte.collectors[0].result[0].nodeid};
+        const report = {id : element.id, stats, testList, testTittle: reporte.collectors[0].result[0].nodeid};
         this.reportsShow.push(report);
 
       }
