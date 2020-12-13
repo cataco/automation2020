@@ -111,7 +111,7 @@ services:
     volumes:
       - medias:/srv/www/backend/backend/medias
   selenium_hub:
-    image: selenium/hub:3.14.0-curium
+    image: selenium/hub:4.0.0-beta-1-prerelease-20201208
     ports:
       - "${SELENIUM_IP}:${SELENIUM_PORT}:4444"
 
